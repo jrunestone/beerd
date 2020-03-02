@@ -47,3 +47,5 @@ MAIN VIEW
 FIRST STEPS
     list of my untappd beers sorted by rating
     header with style options
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/318809e3-f9af-4a74-b4da-0eb61adf325e/deploy-status)](https://app.netlify.com/sites/beerd/deploys)
