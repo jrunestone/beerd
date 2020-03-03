@@ -1,0 +1,10 @@
+[build]
+    publish = "dist"
+    command = "npm run build"
+    functions = "functions"
+
+[context.deploy-preview.environment]
+    NODE_ENV = "development"
+
+[context.production.environment]
+    NODE_ENV = "production"
