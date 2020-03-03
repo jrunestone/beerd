@@ -1,4 +1,4 @@
-type Beer {
+type Beer @collection(name: "beers") {
     id: Int! @unique
     name: String!
     style: String!
