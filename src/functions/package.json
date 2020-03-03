@@ -4,6 +4,7 @@
     "private": true,
     "scripts": {},
     "dependencies": {
+        "encoding": "^0.1.12",
         "faunadb": "^2.11.1"
     },
     "devDependencies": {
