@@ -1,0 +1,12 @@
+{
+    "name": "beerd-functions",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {},
+    "dependencies": {
+        "faunadb": "^2.11.1"
+    },
+    "devDependencies": {
+        "@types/aws-lambda": "^8.10.46"
+    }
+}

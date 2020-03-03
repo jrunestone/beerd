@@ -1,6 +1,9 @@
 .DS_Store
 node_modules
+
+# dist file folders (check src)
 /dist
+/functions
 
 # local env files
 .env.local
