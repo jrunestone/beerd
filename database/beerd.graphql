@@ -1,0 +1,31 @@
+type Beer {
+    id: Int! @unique
+    name: String!
+    style: String!
+    abv: Float!
+    imageUrl: String
+    brewer: Brewer!
+    ratings: Ratings!
+    retailPrice: Float
+    timesHad: Int!
+    firstHad: Date!
+    lastHad: Date!
+    created: Date!
+    updated: Date!
+}
+
+type Ratings @embedded {
+    myRating: Float!
+    globalRating: Float
+    friendsRating: Float
+    rateBeerRating: Float
+}
+
+type Brewer @embedded {
+    id: Int!
+    name: String!
+}
+
+type Query {
+    beers: [Beer!]!
+}

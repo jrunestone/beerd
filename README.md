@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/318809e3-f9af-4a74-b4da-0eb61adf325e/deploy-status)](https://app.netlify.com/sites/beerd/deploys)
+
 IMPL
 scheduled cloud function that fetches untappd beers (possibly on untappd checkin trigger)
 fetches info about beers from ratebeer and beeradv
@@ -48,4 +50,29 @@ FIRST STEPS
     list of my untappd beers sorted by rating
     header with style options
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/318809e3-f9af-4a74-b4da-0eb61adf325e/deploy-status)](https://app.netlify.com/sites/beerd/deploys)
+
+mutation CreateFirstBeer {
+  createBeer(data: {
+    id: 3475336
+    name: "Oceans Apart"
+    style: "IPA - American"
+    abv: 7.0
+    brewer: {
+      id: 0
+      name: "Stigbergets Bryggeri"
+    }
+    ratings: {
+      myRating: 3.75
+      globalRating: 3.50
+    }
+    retailPrice: 38.0
+    timesHad: 1
+    firstHad: "2020-01-01"
+    lastHad: "2020-01-01"
+    created: "2020-03-01"
+    updated: "2020-03-01"
+  }) {
+    id
+    name
+  }
+}
