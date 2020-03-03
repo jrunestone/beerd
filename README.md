@@ -1,8 +1,8 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/318809e3-f9af-4a74-b4da-0eb61adf325e/deploy-status)](https://app.netlify.com/sites/beerd/deploys)
 
 CONFIG NOTES
-    Run `npm run build` to build files to dist folder (excluding functions)
-    Run (npx) `netlify-lambda build src/functions --config webpack.functions.js` to build functions
+    Run `npm run build` to build files to `./dist` (excluding functions)
+    Run (npx) `netlify-lambda build src/functions --config webpack.functions.js` to build functions to `./functions`
     Run `netlify dev` to start vue dev server and netlify proxies for functions etc
 
     The database connection is made implicit via the `FAUNADB_SERVER_SECRET` environment variable (stored privately on netlify and on the database on fauna)
