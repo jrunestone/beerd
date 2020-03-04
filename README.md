@@ -1,44 +1,42 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/318809e3-f9af-4a74-b4da-0eb61adf325e/deploy-status)](https://app.netlify.com/sites/beerd/deploys)
 
 
-
-use FAUNADB_SERVER_SECRET_production and FAUNADB_SERVER_SECRET_development and use NODE_ENV to get it.. not pretty
-can set in toml but need hardcoeded values.. not acceptable
-use a package that on init takes xxx_{node_env} and puts it into xxx
-
-
-
-
 TODO ENV
-Database bootstrap script and dev database? Must exist in both local and preview envs.. set FAUNADB_SERVER_SECRET depending on context in toml
+Database bootstrap script
 Make sure debugging works with vue and functions (build/serve in dev mode) https://github.com/netlify/cli/issues/409
-Make sure dev branches deploy to dev/preview
 Dynamically create .env file
-
-WORKFLOW (GIT FLOW)
-features (development, devdb, deploy-branch)
-develop is unstable test (development, devdb, deploy-branch)
-pull requests from develop to master (production, proddb, deploy-preview)
-master is stable (production, proddb, production)
-
-requires environment variables (db key) to be set separately per env and in dev
+Run bootstrap-env on netlify dev
 
 DEVELOPING NOTES
+    Create netlify site
     Enable branch deploys in netlify
+    Enable Functions in netlify
+    Enable Identity in netlify
     Install `netlify-cli` globally
-    Run `netlify init` or `netlify link` to create a new netlify site and link it
+    Run `netlify link` to link the site
     Run `netlify addons:create fauna`
-    Run `netlify addons:auth fauna` to auth and create database and store secret keys
-    Run `npm run build` to build files to `./dist` (web and functions)
-    Run `npm run bootstrap:db` to import the schema into faunadb or do it manually
-    Run `netlify dev` to start vue dev server and netlify proxies for functions etc
+    Run `netlify addons:auth fauna` to auth and create prod database and store secret keys
+    Create a new database in faunadb for dev purposes and add keys
+    Add a new environment variable in netlify called `FAUNADB_SERVER_SECRET_development` with the key to a dev database
+    Import the schema into prod db (and dev, but is done with bootstrap script)
+    Run `npm run bootstrap:db` to import schema and create dummy data in dev database
+    Run `netlify dev` to start vue dev server and netlify proxies for functions with watch etc
+    TODO: Zapier...untappd...ratebeer..manual beer sync...
 
-    Zapier...untappd...ratebeer..manual beer sync...
+    Run `npm run build` to build production files to `./dist`
 
+    During pre-build the process.env is remapped to environment variables ending in the current NODE_ENV ie MYVAR_development will be mapped to MYVAR (no suffix for production vars)
+    During pre-build a `.env` file for local env vars will be generated with NODE_ENV=development for `netlify dev` to work in development mode, this file is gitignored
     The database connection is made implicit via the `FAUNADB_SERVER_SECRET` environment variable (stored privately on netlify and on the database on fauna)
+
+    Master deploys to production environment in production mode
+    Develop deploys to branch environment in development mode
+    Feature branches deploy to branch environment in development mode
+    Pull requests into master deploy to deploy-preview in production mode
 
 ENV VARIABLES
     FAUNADB_SERVER_SECRET
+    FAUNADB_SERVER_SECRET_development
 
 IMPL
 scheduled cloud function that fetches untappd beers (possibly on untappd checkin trigger)
