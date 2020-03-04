@@ -11,6 +11,8 @@ export async function handler(event: APIGatewayEvent, context: Context) {
     // console.log('event', event);
     // console.log('context', context);
 
+    console.log(process.env.FAUNADB_SERVER_SECRET2, process.env.NODE_ENV);
+
     try {
         const response = await client.query(q.Paginate(q.Match(q.Index('beers'))));
         const data = response;

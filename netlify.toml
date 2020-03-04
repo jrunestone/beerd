@@ -3,8 +3,11 @@
     command = "npm run build"
     functions = "dist/functions"
 
-[context.deploy-preview.environment]
-    NODE_ENV = "development"
+[context.branch-deploy]
+    environment = { NODE_ENV = "development", FAUNADB_SERVER_SECRET = "abc123", FAUNADB_SERVER_SECRET2 = "abcBD" }
 
-[context.production.environment]
-    NODE_ENV = "production"
+[context.deploy-preview]
+    environment = { NODE_ENV = "production", FAUNADB_SERVER_SECRET2 = "abcDP" }
+
+[context.production]
+    environment = { NODE_ENV = "production", FAUNADB_SERVER_SECRET2 = "abcPP" }

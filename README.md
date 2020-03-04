@@ -1,13 +1,22 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/318809e3-f9af-4a74-b4da-0eb61adf325e/deploy-status)](https://app.netlify.com/sites/beerd/deploys)
 
 TODO ENV
-Database bootstrap script
+Database bootstrap script and dev database? Must exist in both local and preview envs.. set FAUNADB_SERVER_SECRET depending on context in toml
 Make sure debugging works with vue and functions (build/serve in dev mode) https://github.com/netlify/cli/issues/409
 Make sure dev branches deploy to dev/preview
 
+WORKFLOW (GIT FLOW)
+features (development, devdb, deploy-branch)
+develop is unstable test (development, devdb, deploy-branch)
+pull requests from develop to master (production, proddb, deploy-preview)
+master is stable (production, proddb, production)
+
+requires environment variables (db key) to be set separately per env and in dev
+
 DEVELOPING NOTES
+    Enable branch deploys in netlify
     Install `netlify-cli` globally
-    Run `netlify init` to create a new netlify site and link it
+    Run `netlify init` or `netlify link` to create a new netlify site and link it
     Run `netlify addons:create fauna`
     Run `netlify addons:auth fauna` to auth and create database and store secret keys
     Run `npm run build` to build files to `./dist` (web and functions)
@@ -17,6 +26,9 @@ DEVELOPING NOTES
     Zapier...untappd...ratebeer..manual beer sync...
 
     The database connection is made implicit via the `FAUNADB_SERVER_SECRET` environment variable (stored privately on netlify and on the database on fauna)
+
+ENV VARIABLES
+    FAUNADB_SERVER_SECRET
 
 IMPL
 scheduled cloud function that fetches untappd beers (possibly on untappd checkin trigger)
