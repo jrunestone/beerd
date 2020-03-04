@@ -4,6 +4,7 @@
         "module": "esnext",
         "strict": true,
         "importHelpers": true,
+        "noImplicitAny": false,
         "moduleResolution": "node",
         "experimentalDecorators": true,
         "esModuleInterop": true,
