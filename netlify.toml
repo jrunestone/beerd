@@ -1,7 +1,7 @@
 [build]
-    publish = "dist"
+    publish = "dist/web"
     command = "npm run build"
-    functions = "functions"
+    functions = "dist/functions"
 
 [context.deploy-preview.environment]
     NODE_ENV = "development"
