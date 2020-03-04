@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "bootstrap:db": "netlify dev:exec node bootstrap/bootstrap-db.js",
-        "bootstrap:env": "node bootstrap/bootstrap-env.js",
+        "bootstrap:db": "netlify dev:exec node bootstrap/build/bootstrap-db.js",
+        "bootstrap:env": "node bootstrap/build/bootstrap-env.js",
         "install:functions": "netlify-lambda install src/functions",
         "postinstall": "run-s install:functions",
         "prebuild": "run-s build:bootstrap bootstrap:env",

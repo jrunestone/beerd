@@ -19,6 +19,7 @@ DEVELOPING NOTES
     Create a new database in faunadb for dev purposes and add keys
     Add a new environment variable in netlify called `FAUNADB_SERVER_SECRET_development` with the key to a dev database
     Import the schema into prod db (and dev, but is done with bootstrap script)
+    Run `npm run build:bootstrap` to build bootstrap scripts
     Run `npm run bootstrap:db` to import schema and create dummy data in dev database
     Run `netlify dev` to start vue dev server and netlify proxies for functions with watch etc
     TODO: Zapier...untappd...ratebeer..manual beer sync...
