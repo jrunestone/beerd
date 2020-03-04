@@ -4,11 +4,9 @@
     "private": true,
     "scripts": {
         "bootstrap:db": "netlify dev:exec node bootstrap/build/bootstrap-db.js",
-        "bootstrap:env": "node bootstrap/build/bootstrap-env.js",
         "install:functions": "netlify-lambda install src/functions",
         "postinstall": "run-s install:functions",
-        "prebuild": "run-s build:bootstrap bootstrap:env",
-        "build": "run-p build:vue build:functions",
+        "build": "run-s build:bootstrap build:vue build:functions",
         "build:vue": "vue-cli-service build",
         "build:functions": "netlify-lambda build src/functions --config webpack.functions.js",
         "build:bootstrap": "tsc --project bootstrap/tsconfig.json",

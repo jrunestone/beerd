@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 
 Vue.config.productionTip = false
-console.log('vue says', process.env.FAUNADB_SERVER_SECRET);
+
 new Vue({
     router,
     store,

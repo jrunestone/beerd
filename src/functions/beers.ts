@@ -1,3 +1,4 @@
+import 'bootstrap/bootstrap-env';
 import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda';
 import faunadb from 'faunadb';
 

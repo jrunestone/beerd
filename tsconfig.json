@@ -15,6 +15,10 @@
             "webpack-env"
         ],
         "paths": {
+            "@bootstrap/*": [
+                "bootstrap/*"
+            ],
+
             "@/*": [
                 "src/*"
             ]
