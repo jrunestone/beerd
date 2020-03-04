@@ -3,7 +3,7 @@ import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda';
 import faunadb from 'faunadb';
 
 const q = faunadb.query;
-
+console.log('from function', process.env.FAUNADB_SERVER_SECRET);
 const client = new faunadb.Client({
     secret: process.env.FAUNADB_SERVER_SECRET
 });
