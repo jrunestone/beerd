@@ -3,7 +3,8 @@
 
 
 use FAUNADB_SERVER_SECRET_production and FAUNADB_SERVER_SECRET_development and use NODE_ENV to get it.. not pretty
-can set
+can set in toml but need hardcoeded values.. not acceptable
+use a package that on init takes xxx_{node_env} and puts it into xxx
 
 
 

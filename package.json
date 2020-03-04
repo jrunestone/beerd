@@ -3,14 +3,16 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "bootstrap:db": "netlify dev:exec node database/bootstrap.js",
-        "serve": "vue-cli-service serve",
+        "bootstrap:db": "netlify dev:exec node bootstrap/bootstrap-db.js",
+        "bootstrap:env": "node bootstrap/bootstrap-env.js",
+        "install:functions": "netlify-lambda install src/functions",
+        "postinstall": "run-s install:functions",
+        "prebuild": "run-s bootstrap:env",
         "build": "run-s build:vue build:functions build:bootstrap",
         "build:vue": "vue-cli-service build",
         "build:functions": "netlify-lambda build src/functions --config webpack.functions.js",
-        "build:bootstrap": "tsc database/bootstrap.ts",
-        "install:functions": "netlify-lambda install src/functions",
-        "postinstall": "run-s install:functions"
+        "build:bootstrap": "tsc --project bootstrap/tsconfig.json",
+        "serve": "vue-cli-service serve"
     },
     "dependencies": {
         "@babel/plugin-transform-object-assign": "^7.8.3",
