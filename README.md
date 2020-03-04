@@ -1,9 +1,18 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/318809e3-f9af-4a74-b4da-0eb61adf325e/deploy-status)](https://app.netlify.com/sites/beerd/deploys)
 
+
+
+use FAUNADB_SERVER_SECRET_production and FAUNADB_SERVER_SECRET_development and use NODE_ENV to get it.. not pretty
+can set
+
+
+
+
 TODO ENV
 Database bootstrap script and dev database? Must exist in both local and preview envs.. set FAUNADB_SERVER_SECRET depending on context in toml
 Make sure debugging works with vue and functions (build/serve in dev mode) https://github.com/netlify/cli/issues/409
 Make sure dev branches deploy to dev/preview
+Dynamically create .env file
 
 WORKFLOW (GIT FLOW)
 features (development, devdb, deploy-branch)

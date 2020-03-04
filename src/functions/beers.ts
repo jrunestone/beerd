@@ -13,6 +13,11 @@ export async function handler(event: APIGatewayEvent, context: Context) {
 
     console.log(process.env.FAUNADB_SERVER_SECRET2, process.env.NODE_ENV);
 
+    return {
+        statusCode: 200,
+        body: process.env.FAUNADB_SERVER_SECRET1 + ",,,,,,,,,,,,," + process.env.FAUNADB_SERVER_SECRET2
+    }
+
     try {
         const response = await client.query(q.Paginate(q.Match(q.Index('beers'))));
         const data = response;
@@ -23,7 +28,7 @@ export async function handler(event: APIGatewayEvent, context: Context) {
         };
     } catch (err) {
         return {
-            stausCode: 500,
+            statusCode: 500,
             body: JSON.stringify(err.message)
         };
     }
