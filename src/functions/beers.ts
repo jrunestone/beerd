@@ -11,11 +11,9 @@ export async function handler(event: APIGatewayEvent, context: Context) {
     // console.log('event', event);
     // console.log('context', context);
 
-    console.log(process.env.FAUNADB_SERVER_SECRET2, process.env.NODE_ENV);
-
     return {
         statusCode: 200,
-        body: process.env.FAUNADB_SERVER_SECRET1 + ",,,,,,,,,,,,," + process.env.FAUNADB_SERVER_SECRET2
+        body: process.env.FAUNADB_SERVER_SECRET+","+process.env.NODE_ENV
     }
 
     try {
