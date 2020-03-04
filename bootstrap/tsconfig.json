@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-        "target": "esnext",
-        "module": "esnext",
+        "target": "ES5",
+        "module": "CommonJS",
         "strict": true,
         "importHelpers": true,
         "noImplicitAny": false,
@@ -12,7 +12,7 @@
         "baseUrl": ".",
         "outDir": "build",
         "lib": [
-            "esnext"
+            "ES5"
         ]
     },
     "include": [
