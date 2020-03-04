@@ -2,11 +2,19 @@
 
 TODO ENV
 Database bootstrap script
-Make sure debugging works with vue and functions (build/serve in dev mode)
+Make sure debugging works with vue and functions (build/serve in dev mode) https://github.com/netlify/cli/issues/409
+Make sure dev branches deploy to dev/preview
 
-CONFIG NOTES
+DEVELOPING NOTES
+    Install `netlify-cli` globally
+    Run `netlify init` to create a new netlify site and link it
+    Run `netlify addons:create fauna`
+    Run `netlify addons:auth fauna` to auth and create database and store secret keys
     Run `npm run build` to build files to `./dist` (web and functions)
+    Run `npm run bootstrap:db` to import the schema into faunadb or do it manually
     Run `netlify dev` to start vue dev server and netlify proxies for functions etc
+
+    Zapier...untappd...ratebeer..manual beer sync...
 
     The database connection is made implicit via the `FAUNADB_SERVER_SECRET` environment variable (stored privately on netlify and on the database on fauna)
 

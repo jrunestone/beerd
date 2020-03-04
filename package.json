@@ -3,13 +3,13 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
+        "bootstrap:db": "netlify dev:exec node database/bootstrap.js",
         "serve": "netlify dev",
         "serve:vue": "vue-cli-service serve",
-
-        "build": "run-s build:vue build:functions",
+        "build": "run-s build:vue build:functions build:bootstrap",
         "build:vue": "vue-cli-service build",
         "build:functions": "netlify-lambda build src/functions --config webpack.functions.js",
-
+        "build:bootstrap": "tsc database/bootstrap.ts",
         "install:functions": "netlify-lambda install src/functions",
         "postinstall": "run-s install:functions"
     },
@@ -36,6 +36,7 @@
         "vue-template-compiler": "^2.6.11"
     },
     "devDependencies": {
+        "@types/aws-lambda": "^8.10.46",
         "@types/node": "^13.7.7"
     }
 }
