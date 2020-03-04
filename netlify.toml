@@ -4,7 +4,7 @@
     functions = "dist/functions"
 
 [context.branch-deploy]
-    environment = { NODE_ENV = "development", FAUNADB_SERVER_SECRET = "abc123", FAUNADB_SERVER_SECRET2 = "abcBD" }
+    environment = { NODE_ENV = "development" }
 
 [context.deploy-preview]
     environment = { NODE_ENV = "production", FAUNADB_SERVER_SECRET2 = "abcDP" }
