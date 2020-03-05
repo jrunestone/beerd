@@ -26,7 +26,7 @@ DEVELOPING NOTES
 
     Run `npm run build` to build production files to `./dist`
 
-    During pre-build the process.env is remapped to environment variables ending in the current NODE_ENV ie MYVAR_development will be mapped to MYVAR (no suffix for production vars)
+    To access environment-specific variables in process.env import `import 'bootstrap/bootstrap-env';` first which will map variables to the current environment via XXX_development pattern
     During pre-build a `.env` file for local env vars will be generated with NODE_ENV=development for `netlify dev` to work in development mode, this file is gitignored
     The database connection is made implicit via the `FAUNADB_SERVER_SECRET` environment variable (stored privately on netlify and on the database on fauna)
 
