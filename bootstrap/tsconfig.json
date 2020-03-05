@@ -4,7 +4,6 @@
         "module": "CommonJS",
         "strict": true,
         "importHelpers": true,
-        "noImplicitAny": false,
         "moduleResolution": "node",
         "experimentalDecorators": true,
         "esModuleInterop": true,
@@ -13,7 +12,12 @@
         "outDir": "build",
         "lib": [
             "ES5"
-        ]
+        ],
+        "paths": {
+            "@src/*": [
+                "../src/*"
+            ]
+        }
     },
     "include": [
         "*.ts"

@@ -2,10 +2,7 @@
 
 
 TODO ENV
-Database bootstrap script
 Make sure debugging works with vue and functions (build/serve in dev mode) https://github.com/netlify/cli/issues/409
-Dynamically create .env file
-Run bootstrap-env on netlify dev
 
 DEVELOPING NOTES
     Create netlify site
@@ -20,7 +17,7 @@ DEVELOPING NOTES
     Add a new environment variable in netlify called `FAUNADB_SERVER_SECRET_development` with the key to a dev database
     Import the schema into prod db (and dev, but is done with bootstrap script)
     Run `npm run build:bootstrap` to build bootstrap scripts
-    Run `npm run bootstrap:db` to import schema and create dummy data in dev database
+    Run `npm run bootstrap:db` to import schema and create dummy data in dev database (need to terminate manually)
     Run `netlify dev` to start vue dev server and netlify proxies for functions with watch etc
     TODO: Zapier...untappd...ratebeer..manual beer sync...
 
@@ -29,6 +26,7 @@ DEVELOPING NOTES
     To access environment-specific variables in process.env import `import 'bootstrap/bootstrap-env';` first which will map variables to the current environment via XXX_development pattern
     During pre-build a `.env` file for local env vars will be generated with NODE_ENV=development for `netlify dev` to work in development mode, this file is gitignored
     The database connection is made implicit via the `FAUNADB_SERVER_SECRET` environment variable (stored privately on netlify and on the database on fauna)
+    The files in the bootstrap folder are compiled with a typescript binary that may be newer than the one bundled in vue and netlify which may need different syntax
 
     Master deploys to production environment in production mode
     Develop deploys to branch environment in development mode
@@ -88,29 +86,3 @@ MAIN VIEW
 FIRST STEPS
     list of my untappd beers sorted by rating
     header with style options
-
-mutation CreateFirstBeer {
-  createBeer(data: {
-    id: 3475336
-    name: "Oceans Apart"
-    style: "IPA - American"
-    abv: 7.0
-    brewer: {
-      id: 0
-      name: "Stigbergets Bryggeri"
-    }
-    ratings: {
-      myRating: 3.75
-      globalRating: 3.50
-    }
-    retailPrice: 38.0
-    timesHad: 1
-    firstHad: "2020-01-01"
-    lastHad: "2020-01-01"
-    created: "2020-03-01"
-    updated: "2020-03-01"
-  }) {
-    id
-    name
-  }
-}

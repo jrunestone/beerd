@@ -1,5 +1,5 @@
 import 'bootstrap/bootstrap-env';
-import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda';
+import { Context, APIGatewayEvent } from 'aws-lambda';
 import faunadb from 'faunadb';
 
 const q = faunadb.query;
