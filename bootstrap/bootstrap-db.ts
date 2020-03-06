@@ -1,5 +1,5 @@
 import './bootstrap-env';
-import { Response, Beer, Brewer, Ratings } from '@src/database/database-types';
+import { QueryIndexResponse, Beer, Brewer, Ratings } from '@src/database/database-types';
 import faunadb from 'faunadb';
 import FaunaDate = faunadb.values.FaunaDate;
 
@@ -12,23 +12,26 @@ const client = new faunadb.Client({
 });
 
 async function bootstrap(num: number) {
-    const hasData = await databaseHasData()
-        .catch(e => { throw e });
+    const hasData = await databaseHasData();
 
     if (hasData) {
         console.log('Database not empty, not doing anything');
         return;
     }
 
-    await insertData(num)
-        .then(() => console.log(`Inserted ${num} rows`))
-        .catch(e => { throw e });
+    await insertData(num);
+
+    console.log(`Inserted ${num} rows`);
 }
 
 async function databaseHasData() {
-    const response = <Response>await client
-        .query(q.Paginate(q.Match(q.Index('beers'))))
-        .catch(e => { throw e });
+    const response = <QueryIndexResponse>await client.query(
+        q.Paginate(
+            q.Match(
+                q.Index('beers')
+            )
+        )
+    );
 
     return response.data.length > 0;
 }
@@ -78,4 +81,4 @@ async function insertData(num: number) {
 
 bootstrap(10)
     .then(() => console.log('Finished'))
-    .catch(console.log);
+    .catch(console.error);

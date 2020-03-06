@@ -1,16 +1,13 @@
 import faunadb from 'faunadb';
+import Ref = faunadb.values.Ref;
 import FaunaDate = faunadb.values.FaunaDate;
 
-export interface Response {
-    data: Document[];
+export interface QueryIndexResponse {
+    data: Ref[];
 }
 
-export interface Document {
-    ref: Reference;
-}
-
-export interface Reference {
-    id: string;
+export interface BeerDocument {
+    data: Beer[];
 }
 
 export interface Brewer {

@@ -1,9 +1,6 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/318809e3-f9af-4a74-b4da-0eb61adf325e/deploy-status)](https://app.netlify.com/sites/beerd/deploys)
 
 
-TODO ENV
-Make sure debugging works with vue and functions (build/serve in dev mode) https://github.com/netlify/cli/issues/409
-
 DEVELOPING NOTES
     Create netlify site
     Enable branch deploys in netlify
