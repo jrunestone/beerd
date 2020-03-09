@@ -1,42 +1,44 @@
 {
-    "name": "beerd",
-    "version": "1.0.0",
-    "private": true,
-    "scripts": {
-        "bootstrap:db": "netlify dev:exec node bootstrap/build/bootstrap/bootstrap-db.js",
-        "install:env": "node bootstrap/build/bootstrap/install-env.js",
-        "install:functions": "netlify-lambda install src/functions",
-        "postinstall": "run-s build:bootstrap install:functions install:env",
-        "build": "run-s build:vue build:functions",
-        "build:vue": "vue-cli-service build",
-        "build:functions": "netlify-lambda build src/functions --config webpack.functions.js",
-        "build:bootstrap": "tsc --project bootstrap/tsconfig.json",
-        "serve": "vue-cli-service serve"
-    },
-    "dependencies": {
-        "@babel/plugin-transform-object-assign": "^7.8.3",
-        "@babel/preset-env": "^7.8.6",
-        "@babel/preset-typescript": "^7.8.3",
-        "@vue/cli-plugin-babel": "~4.2.0",
-        "@vue/cli-plugin-router": "~4.2.0",
-        "@vue/cli-plugin-typescript": "~4.2.0",
-        "@vue/cli-plugin-vuex": "~4.2.0",
-        "@vue/cli-service": "~4.2.0",
-        "core-js": "^3.6.4",
-        "encoding": "^0.1.12",
-        "faunadb": "^2.11.1",
-        "netlify-lambda": "^1.6.3",
-        "npm-run-all": "^4.1.5",
-        "typescript": "~3.7.5",
-        "vue": "^2.6.11",
-        "vue-class-component": "^7.2.2",
-        "vue-property-decorator": "^8.3.0",
-        "vue-router": "^3.1.5",
-        "vue-template-compiler": "^2.6.11",
-        "vuex": "^3.1.2"
-    },
-    "devDependencies": {
-        "@types/aws-lambda": "^8.10.46",
-        "@types/node": "^13.7.7"
-    }
+  "name": "beerd",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "run-s build:vue build:functions",
+    "bootstrap:db": "netlify dev:exec node bootstrap/build/bootstrap/bootstrap-db.js",
+    "build:bootstrap": "tsc --project bootstrap/tsconfig.json",
+    "build:functions": "netlify-lambda build src/functions --config webpack.functions.js",
+    "build:vue": "vue-cli-service build",
+    "install:env": "node bootstrap/build/bootstrap/install-env.js",
+    "install:functions": "netlify-lambda install src/functions",
+    "postinstall": "run-s build:bootstrap install:functions install:env"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-object-assign": "^7.8.3",
+    "@babel/preset-env": "^7.8.6",
+    "@babel/preset-typescript": "^7.8.3",
+    "@vue/cli-plugin-babel": "~4.2.0",
+    "@vue/cli-plugin-router": "~4.2.0",
+    "@vue/cli-plugin-typescript": "~4.2.0",
+    "@vue/cli-plugin-vuex": "~4.2.0",
+    "@vue/cli-service": "~4.2.0",
+    "core-js": "^3.6.4",
+    "encoding": "^0.1.12",
+    "faunadb": "^2.11.1",
+    "netlify-lambda": "^1.6.3",
+    "npm-run-all": "^4.1.5",
+    "register-service-worker": "^1.6.2",
+    "typescript": "~3.7.5",
+    "vue": "^2.6.11",
+    "vue-class-component": "^7.2.2",
+    "vue-property-decorator": "^8.3.0",
+    "vue-router": "^3.1.5",
+    "vue-template-compiler": "^2.6.11",
+    "vuex": "^3.1.2"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.46",
+    "@types/node": "^13.7.7",
+    "@vue/cli-plugin-pwa": "^4.2.3"
+  }
 }
