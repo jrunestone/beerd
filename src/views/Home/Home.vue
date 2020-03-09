@@ -1,6 +1,10 @@
 <template>
     <div>
-        <Counter />
+        <header>
+            <list-controls />
+        </header>
+
+        <beer-list />
     </div>
 </template>
 

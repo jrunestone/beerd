@@ -36,12 +36,6 @@ ENV VARIABLES
     FAUNADB_SERVER_SECRET
     FAUNADB_SERVER_SECRET_development
 
-IMPL
-scheduled cloud function that fetches untappd beers (possibly on untappd checkin trigger)
-fetches info about beers from ratebeer and beeradv
-updates database
-
-
 NOTES
 
 An app to review my checked in beers on untappd
@@ -83,5 +77,4 @@ MAIN VIEW
             price
 
 FIRST STEPS
-    list of my untappd beers sorted by rating
-    header with style options
+    store has action to fetch beers and put in cache and mutate state

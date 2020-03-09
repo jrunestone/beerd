@@ -1,3 +1,7 @@
 module.exports = {
-    outputDir: 'dist/web'
+    outputDir: 'dist/web',
+
+    configureWebpack: {
+        devtool: 'source-map'
+    }
 };

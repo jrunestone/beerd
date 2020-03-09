@@ -1,9 +1,11 @@
-import Counter from "@/components/Counter/Counter.vue";
+import ListControls from "@/components/ListControls/ListControls.vue";
+import BeerList from "@/components/BeerList/BeerList.vue";
 
 export default {
     name: "Home",
 
     components: {
-        Counter
+        ListControls,
+        BeerList
     }
 };

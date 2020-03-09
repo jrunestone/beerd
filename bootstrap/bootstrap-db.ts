@@ -1,5 +1,5 @@
 import './bootstrap-env';
-import { QueryIndexResponse, Beer, Brewer, Ratings } from '@src/database/database-types';
+import { QueryIndexResponse, Beer } from '@src/database/types';
 import faunadb from 'faunadb';
 import FaunaDate = faunadb.values.FaunaDate;
 

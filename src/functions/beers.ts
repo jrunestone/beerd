@@ -1,7 +1,7 @@
 import 'bootstrap/bootstrap-env';
 import { Context, APIGatewayEvent } from 'aws-lambda';
 import faunadb from 'faunadb';
-import { QueryIndexResponse, BeerDocument } from '../database/database-types';
+import { QueryIndexResponse, BeerDocument } from '../database/types';
 
 const q = faunadb.query;
 
