@@ -1,7 +1,11 @@
 module.exports = {
     outputDir: 'dist/web',
 
-    configureWebpack: {
-        devtool: 'source-map'
+    pwa: {
+        workboxPluginMode: 'InjectManifest',
+
+        workboxOptions: {
+            swSrc: 'public/service-worker.js'
+        }
     }
 };
