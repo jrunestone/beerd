@@ -11,7 +11,9 @@ const client = new faunadb.Client({
     secret: process.env.FAUNADB_SERVER_SECRET_development!
 });
 
-async function bootstrap(num: number) {
+const NUM_ROWS = 10;
+
+async function bootstrap() {
     const hasData = await databaseHasData();
 
     if (hasData) {
@@ -19,21 +21,29 @@ async function bootstrap(num: number) {
         return;
     }
 
-    await insertData(num);
+    await insertData(NUM_ROWS);
 
-    console.log(`Inserted ${num} rows`);
+    console.log(`Inserted ${NUM_ROWS} rows`);
 }
 
 async function databaseHasData() {
-    const response = <QueryIndexResponse>await client.query(
-        q.Paginate(
-            q.Match(
-                q.Index('beers')
-            )
-        )
-    );
+    let hasData = false;
 
-    return response.data.length > 0;
+    try {
+        const response = <QueryIndexResponse>await client.query(
+            q.Paginate(
+                q.Match(
+                    q.Index('beers')
+                )
+            )
+        );
+
+        hasData = response.data.length > 0;
+    } catch {
+
+    }
+
+    return hasData;
 }
 
 async function insertData(num: number) {
@@ -42,7 +52,7 @@ async function insertData(num: number) {
     for (let i = 0; i < num; i++) {
         objs.push({
             id: Math.floor(1 + Math.random() * 70000),
-            name: `Beer ${i + 1}`,
+            name: [`Beer Name ${i + 1}`, `Beer With A Longer Name ${i + 1}`, `Beer With A Long And Convoluted Hipster Name ${i + 1}`][Math.floor(Math.random() * 3)],
             style: ['IPA - American', 'Pale Ale - American', 'Stout - Imperial / Double', 'Farmhouse Ale - Saison'][Math.floor(Math.random() * 4)],
             abv: parseFloat((Math.random() * 15).toFixed(1)),
             brewer: {
@@ -55,6 +65,7 @@ async function insertData(num: number) {
                 friendsRating: parseFloat((1 + Math.random() * 5).toFixed(2)),
                 rateBeerRating: parseFloat((1 + Math.random() * 5).toFixed(2))
             },
+            score: parseFloat((1 + Math.random() * 5).toFixed(2)),
             retailPrice: parseFloat((1 + Math.random() * 100).toFixed(2)),
             timesHad: Math.floor(1 + Math.random() * 10),
             imageUrl: 'https://placekitten.com/200/300',
@@ -79,6 +90,6 @@ async function insertData(num: number) {
     );
 }
 
-bootstrap(10)
+bootstrap()
     .then(() => console.log('Finished'))
     .catch(console.error);

@@ -1,6 +1,6 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/318809e3-f9af-4a74-b4da-0eb61adf325e/deploy-status)](https://app.netlify.com/sites/beerd/deploys)
 
-PWA (static files + api calls)
+Create collection+indexes and then import schema and shit with bootstrap db for dev..
 
 
 DEVELOPING NOTES
@@ -9,14 +9,16 @@ DEVELOPING NOTES
     Enable Functions in netlify
     Enable Identity in netlify
     Install `netlify-cli` globally
+    Install `fauna-shell` globally
     Run `netlify link` to link the site
     Run `netlify addons:create fauna`
     Run `netlify addons:auth fauna` to auth and create prod database and store secret keys
-    Create a new database in faunadb for dev purposes and add keys
+    Create a new database in faunadb for dev purposes and add a key
     Add a new environment variable in netlify called `FAUNADB_SERVER_SECRET_development` with the key to a dev database
-    Import the schema into prod db (and dev, but is done with bootstrap script)
+    Run `fauna eval --secret=<your db secret key> --file=./bootstrap/bootstrap-db.fql` to create collection and indexes
+    Go to faunadb and import the schema
     Run `npm run build:bootstrap` to build bootstrap scripts
-    Run `npm run bootstrap:db` to import schema and create dummy data in dev database (need to terminate manually)
+    Run `npm run bootstrap:db` to create dummy data in dev database (need to terminate manually)
     Run `netlify dev` to start vue dev server and netlify proxies for functions with watch etc
     TODO: Zapier...untappd...ratebeer..manual beer sync...
 
@@ -49,23 +51,31 @@ Feature: stats (preferred style, how many litres, money spent etc)
 Feature: integrate with systembolaget to see if this particular beer is available right now and where (predefined + search + closest)
 Feature: view to see recent systembolaget releases by style
 Feature: view friend's untapped checkins of same style that i havent tasted
+Feature: see what hops i really like
+Feature: see what breweries i really like
 
 MAIN VIEW
-    header with control options (big buttons that fold out options)
-        source (my beers, friend's beers that i havent drunk)
+    https://dribbble.com/shots/5690048-Social-Meet-Up-UI-Kit-Motion-Product-design
+
+    header with control options (big buttons that fold out options on touch/hold)
+        source (my beers, friend's beers that i havent drunk) <- slide this one left/right
         style (folds out predefined styles: all, ipa, dipa, dstout, pstout)
-        sort (my rating, other's untappd rating, ratebeer rating, beeradv rating, friend's rating, times drunk by me, custom score)
+        sort (my/their rating, other's untappd rating, ratebeer rating, beeradv rating, friend's rating, times drunk by me, custom score)
         random beer of same style from untapped that i havent drunk (available in sweden)
+        search
+        custom score = rating + times had
 
     list of beers with infinite scroll
         AT A GLANCE
             name
-            style
+            (style)
             my untappd rating
             times drunk/custom score?
             last drunk
+            badge for "favorite" not manual but based on stats
+            badges for friends who drank it (liked it?)
 
-        CLICK
+        CLICK (or drag down on card)
             button to "just drank it again, would drink again"
             other's untappd rating
             friend's untappd rating
@@ -75,6 +85,12 @@ MAIN VIEW
             custom score
             where can i buy it now (systembolaget stock, predefined, closest)
             price
+            recommend to friend
 
-FIRST STEPS
-    store has action to fetch beers and put in cache and mutate state
+        COOL
+            slide header left/right for different source mode
+            drag down on header to reveal more detailed filters?
+            header disappears scrolling down, appears scrolling up
+            drag down on beer instead of click
+            slide either way for "just had it would drink again yes/no"
+            search by taking photo on beer can (barcode and/or name)
