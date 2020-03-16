@@ -15,8 +15,8 @@ DEVELOPING NOTES
     Run `netlify addons:auth fauna` to auth and create prod database and store secret keys
     Create a new database in faunadb for dev purposes and add a key
     Add a new environment variable in netlify called `FAUNADB_SERVER_SECRET_development` with the key to a dev database
-    Run `fauna eval --secret=<your db secret key> --file=./bootstrap/bootstrap-db.fql` to create collection and indexes
     Go to faunadb and import the schema
+    Run `fauna eval --secret=<your db secret key> --file=./bootstrap/bootstrap-db.fql` to create collection and indexes
     Run `npm run build:bootstrap` to build bootstrap scripts
     Run `npm run bootstrap:db` to create dummy data in dev database (need to terminate manually)
     Run `netlify dev` to start vue dev server and netlify proxies for functions with watch etc

@@ -10,6 +10,7 @@ export class Beer implements BeerBase {
     brewer!: Brewer;
     ratings!: Ratings;
     retailPrice: number | undefined;
+    score!: number;
     timesHad: number = 0;
     imageUrl: string | undefined;
     firstHad!: FaunaDate;
