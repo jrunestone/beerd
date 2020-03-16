@@ -1,0 +1,28 @@
+/*
+    --index
+*/
+
+.beer-card {
+    background: #fff;
+    padding: 100px 40px 50px;
+    border-bottom-left-radius: 50px;
+    position: relative;
+    top: calc(-50px * var(--index));
+    z-index: calc(-1 * var(--index));
+}
+
+.beer-card:nth-of-type(even) {
+    background: #fff;
+}
+
+.beer-card:nth-of-type(odd) {
+    background: #5f4591;
+}
+
+.beer-card-small-meta-right {
+    float: right;
+}
+
+h2 {
+    margin-top: 0;
+}

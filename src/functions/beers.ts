@@ -13,15 +13,16 @@ async function getItemQueries() {
     const indexRefResponse = <QueryIndexResponse>await client.query(
         q.Paginate(
             q.Match(
-                q.Index('beers')
+                q.Index('beersSortedByScore')
             )
         )
     );
 
-    const itemQuery = indexRefResponse.data
-        .map(d => q.Get(d));
+    // [score, ref]
+    const itemQueries = indexRefResponse.data
+        .map(d => q.Get(d[1]));
 
-    return itemQuery;
+    return itemQueries;
 }
 
 async function getBeerItems(itemQueries: faunadb.Expr[]) {

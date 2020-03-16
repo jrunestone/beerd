@@ -1,0 +1,11 @@
+.home {
+    height: 100%;
+    background: #ac99b6;
+}
+
+.top-bar {
+    padding: 50px;
+    background: #fff;
+    position: relative;
+    z-index: 2;
+}

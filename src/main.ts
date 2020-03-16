@@ -6,6 +6,10 @@ import './registerServiceWorker';
 
 Vue.config.productionTip = false;
 
+import '../node_modules/normalize.css/normalize.css';
+import '@/assets/styles/fonts.css';
+import '@/assets/styles/global.css';
+
 new Vue({
     router,
     store,

@@ -1,7 +1,12 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Beer } from '@/database/types';
+import { Beer } from '@/models/Beer';
+import BeerCard from '@/components/BeerCard/BeerCard.vue';
 
-@Component
+@Component({
+    components: {
+        BeerCard
+    }
+})
 export default class BeerList extends Vue {
     get beers(): Beer[] {
         return this.$store.state.beers;

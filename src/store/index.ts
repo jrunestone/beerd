@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import { State } from './types';
-import { Beer } from '@src/database/types';
+import { Beer } from '@src/models/Beer';
 
 Vue.use(Vuex);
 
