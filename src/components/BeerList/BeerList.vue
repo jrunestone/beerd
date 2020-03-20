@@ -1,6 +1,6 @@
 <template>
     <div class="beer-list">
-        <beer-card v-for="(beer, index) in beers" :key="beer.id" :beer="beer" :index="index" />
+        <beer-card v-for="beer in beers" :key="beer.id" :beer="beer" />
     </div>
 </template>
 

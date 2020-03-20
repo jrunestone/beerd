@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <header class="top-bar">
+        <header>
             <list-controls />
         </header>
 

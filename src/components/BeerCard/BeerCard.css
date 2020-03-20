@@ -3,26 +3,45 @@
 */
 
 .beer-card {
-    background: #fff;
-    padding: 100px 40px 50px;
-    border-bottom-left-radius: 50px;
+    background: #434273;
+    border-radius: 15px;
+    box-shadow: 5px 5px 20px -5px rgba(0,0,0,0.15);
+    padding: 20px 20px 20px 80px;
+    margin-left: 51px;
     position: relative;
-    top: calc(-50px * var(--index));
-    z-index: calc(-1 * var(--index));
+    height: 100px;
+    color: #afacd9;
 }
 
-.beer-card:nth-of-type(even) {
-    background: #fff;
+.beer-card + .beer-card {
+    margin-top: 20px;
 }
 
-.beer-card:nth-of-type(odd) {
-    background: #5f4591;
-}
-
-.beer-card-small-meta-right {
-    float: right;
+img {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    transform: translate( -134px, -5px);
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 h2 {
-    margin-top: 0;
+    color: #fff;
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 500;
+    -webkit-line-clamp: 2;
+}
+
+.score {
+    position: absolute;
+    right: 20px;
+    top: 24px;
+    color: #ffd700;
+}
+
+.meta-bottom {
+    position: absolute;
+    bottom: 20px;
 }

@@ -6,3 +6,9 @@ html, body {
 .app {
     height: 100%;
 }
+
+.line-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

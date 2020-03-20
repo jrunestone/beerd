@@ -1,14 +1,12 @@
 <template>
-    <div class="beer-card" :style="{ '--index': (parseInt(index) + 1) }">
-        <div class="beer-card-small-meta">
-            <small class="beer-card-small-meta-right">{{ beer.score }}</small>
-            <small>{{ beer.style }}</small>
+    <div class="beer-card">
+        <img :src="beer.imageUrl" :alt="beer.name" />
+        <small class="score">{{ beer.score }}</small>
+        <h2 class="line-clamp">{{ beer.name }}</h2>
+        <small>{{ beer.style }}</small>
+        <div class="meta-bottom">
+            <small>{{ beer.ratings.myRating }}</small>
         </div>
-
-        <h2>{{ beer.name }}</h2>
-        Had {{ beer.timesHad }} times
-
-        <!--  more: xxx -->
     </div>
 </template>
 

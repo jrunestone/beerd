@@ -55,14 +55,15 @@ Feature: see what hops i really like
 Feature: see what breweries i really like
 
 MAIN VIEW
-    https://dribbble.com/shots/5690048-Social-Meet-Up-UI-Kit-Motion-Product-design
+    https://www.uplabs.com/posts/space-travel-ui
 
     header with control options (big buttons that fold out options on touch/hold)
         source (my beers, friend's beers that i havent drunk) <- slide this one left/right
         style (folds out predefined styles: all, ipa, dipa, dstout, pstout)
         sort (my/their rating, other's untappd rating, ratebeer rating, beeradv rating, friend's rating, times drunk by me, custom score)
-        random beer of same style from untapped that i havent drunk (available in sweden)
         search
+
+        random beer of same style from untapped that i havent drunk (available in sweden)
         custom score = rating + times had
 
     list of beers with infinite scroll
@@ -75,7 +76,8 @@ MAIN VIEW
             badge for "favorite" not manual but based on stats
             badges for friends who drank it (liked it?)
 
-        CLICK (or drag down on card)
+        CLICK/ACTIVATE
+            slide in text section from side or fill window with info or expand card
             button to "just drank it again, would drink again"
             other's untappd rating
             friend's untappd rating
@@ -91,6 +93,6 @@ MAIN VIEW
             slide header left/right for different source mode
             drag down on header to reveal more detailed filters?
             header disappears scrolling down, appears scrolling up
-            drag down on beer instead of click
             slide either way for "just had it would drink again yes/no"
             search by taking photo on beer can (barcode and/or name)
+            shake phone to give random beer from closest systembolag
