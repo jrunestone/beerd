@@ -52,7 +52,7 @@ async function insertData(num: number) {
     for (let i = 0; i < num; i++) {
         objs.push({
             id: Math.floor(1 + Math.random() * 70000),
-            name: [`Beer Name ${i + 1}`, `Beer With A Longer Name ${i + 1}`, `Beer With A Long And Convoluted Hipster Name ${i + 1}`][Math.floor(Math.random() * 3)],
+            name: ['Aon', 'FRESH', 'Acme IPA', 'Radio the Mothership', 'Hitachino Nest Non Ale', 'Apocalyptic Thunder Juice', 'Chocolate Strawberry Pear Vanilla Cake'][Math.floor(Math.random() * 7)],
             style: ['IPA - American', 'Pale Ale - American', 'Stout - Imperial / Double', 'Farmhouse Ale - Saison'][Math.floor(Math.random() * 4)],
             abv: parseFloat((Math.random() * 15).toFixed(1)),
             brewer: {
@@ -60,15 +60,15 @@ async function insertData(num: number) {
                 name: ['Stigbergets Bryggeri', 'Dugges Bryggeri', 'Omnipollo', 'Poppels Bryggeri'][Math.random() * 4]
             },
             ratings: {
-                myRating: parseFloat((1 + Math.random() * 5).toFixed(2)),
-                globalRating: parseFloat((1 + Math.random() * 5).toFixed(2)),
-                friendsRating: parseFloat((1 + Math.random() * 5).toFixed(2)),
-                rateBeerRating: parseFloat((1 + Math.random() * 5).toFixed(2))
+                myRating: parseFloat((1 + Math.random() * 4).toFixed(2)),
+                globalRating: parseFloat((1 + Math.random() * 4).toFixed(2)),
+                friendsRating: parseFloat((1 + Math.random() * 4).toFixed(2)),
+                rateBeerRating: parseFloat((1 + Math.random() * 4).toFixed(2))
             },
-            score: parseFloat((1 + Math.random() * 5).toFixed(2)),
+            score: parseFloat((1 + Math.random() * 4).toFixed(2)),
             retailPrice: parseFloat((1 + Math.random() * 100).toFixed(2)),
-            timesHad: Math.floor(1 + Math.random() * 10),
-            imageUrl: 'https://placekitten.com/200/300',
+            timesHad: Math.floor(1 + Math.random() * 20),
+            imageUrl: `https://picsum.photos/seed/${Math.random() * 5000}/100`,
             firstHad: new FaunaDate(`${2015 + Math.floor(Math.random() * 5)}-${(1 + Math.floor(Math.random() * 12)).toString().padStart(2, '0')}-${(1 + Math.floor(Math.random() * 28)).toString().padStart(2, '0')}`),
             lastHad: new FaunaDate(`${2015 + Math.floor(Math.random() * 6)}-${(1 + Math.floor(Math.random() * 12)).toString().padStart(2, '0')}-${(1 + Math.floor(Math.random() * 28)).toString().padStart(2, '0')}`),
             created: new FaunaDate(`${2015 + Math.floor(Math.random() * 4)}-${(1 + Math.floor(Math.random() * 12)).toString().padStart(2, '0')}-${(1 + Math.floor(Math.random() * 28)).toString().padStart(2, '0')}`),
