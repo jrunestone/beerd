@@ -17,4 +17,15 @@ export class Beer implements BeerBase {
     lastHad!: FaunaDate;
     created!: FaunaDate;
     updated!: FaunaDate;
-};
+
+    get styleAbbr(): string {
+        return this.style.replace(/^([^-]+).+/, '$1');
+    }
+
+    get averageGlobalRating(): number {
+        return Number((
+            ((this.ratings.globalRating ?? 0) + (this.ratings.rateBeerRating ?? 0)) / 2)
+            .toFixed(2)
+        );
+    }
+}

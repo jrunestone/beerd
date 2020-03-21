@@ -12,3 +12,7 @@ html, body {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+small.icon .material-design-icon {
+    margin-right: 2px;
+}

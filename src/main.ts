@@ -6,7 +6,8 @@ import './registerServiceWorker';
 
 Vue.config.productionTip = false;
 
-import '../node_modules/normalize.css/normalize.css';
+import 'normalize.css/normalize.css';
+import 'vue-material-design-icons/styles.css';
 import '@/assets/styles/fonts.css';
 import '@/assets/styles/global.css';
 

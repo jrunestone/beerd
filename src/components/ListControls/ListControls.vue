@@ -1,8 +1,9 @@
 <template>
     <ul class="list-controls">
-        <li>me|friends</li>
-        <li>style</li>
-        <li>sort</li>
+        <li><control /></li>
+        <li><control /></li>
+        <li><control /></li>
+        <li><control /></li>
     </ul>
 </template>
 

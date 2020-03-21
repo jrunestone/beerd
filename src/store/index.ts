@@ -2,7 +2,8 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import { State } from './types';
-import { Beer } from '@src/models/Beer';
+import { Beer as BeerBase } from '@/database/types';
+import { Beer } from '@/models/Beer';
 
 Vue.use(Vuex);
 
@@ -12,12 +13,12 @@ export default new Vuex.Store({
     },
 
     getters: {
-
+        // filters, sort..
     },
 
     mutations: {
-        setBeers(state, beers: Beer[]) {
-            state.beers = { ...beers };
+        setBeers(state, beers: BeerBase[]) {
+            state.beers = beers.map(obj => Object.assign(new Beer(), obj));
         }
     },
 
