@@ -17,6 +17,7 @@
 
             <div class="card-right-col">
                 <small class="score"><score-icon />{{ beer.score }}</small>
+                <small class="icon"><beer-icon />{{ beer.timesHad }}</small>
                 <div class="friends">
                     <div style="right: 0; z-index: 1; background: #fff;"></div>
                     <div style="right: 5px; z-index: 2; background: #000;"></div>

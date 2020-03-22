@@ -3,6 +3,10 @@ a {
     border-radius: 50%;
     padding: 10px;
     display: block;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
+}
+
+.material-design-icon {
+    margin-top: -2px;
 }

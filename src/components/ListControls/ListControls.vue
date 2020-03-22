@@ -1,9 +1,7 @@
 <template>
     <ul class="list-controls">
-        <li><control /></li>
-        <li><control /></li>
-        <li><control /></li>
-        <li><control /></li>
+        <li><control><beer-icon class="large-icon" /></control></li>
+        <li><control><sort-icon class="large-icon" /></control></li>
     </ul>
 </template>
 

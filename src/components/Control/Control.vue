@@ -1,5 +1,7 @@
 <template>
-    <a></a>
+    <a>
+        <slot></slot>
+    </a>
 </template>
 
 <script src="./Control.ts"></script>

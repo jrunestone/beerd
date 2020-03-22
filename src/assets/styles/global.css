@@ -16,3 +16,9 @@ html, body {
 small.icon .material-design-icon {
     margin-right: 2px;
 }
+
+.large-icon,
+.large-icon > .material-design-icon__svg {
+    width: 24px;
+    height: 24px;
+}
