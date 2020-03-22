@@ -38,61 +38,35 @@ ENV VARIABLES
     FAUNADB_SERVER_SECRET
     FAUNADB_SERVER_SECRET_development
 
-NOTES
+PURPOSE
+    An app to review my checked in beers on untappd
+    Purpose to find old beers to drink again based on mood and rating
 
-An app to review my checked in beers on untappd
-Purpose to find old beers to drink again based on mood and rating
+TODO
+    Extract components out of icon+text and friends
+    CSS cleanup
 
-Feature: at a glance view my top ranked beer/most drinked side by side with friends and ratebeer/beer adv/
-Feature: easy to switch between predefined styles (ipa, dipa, dstout, pstout) (predefined filters)
-Feature: easy to hit "just drank it again" - no score etc just one more time and possibly "would drink again yes/no"
-Feature: custom score (rating + times drunk) + price?
-Feature: stats (preferred style, how many litres, money spent etc)
-Feature: integrate with systembolaget to see if this particular beer is available right now and where (predefined + search + closest)
-Feature: view to see recent systembolaget releases by style
-Feature: view friend's untapped checkins of same style that i havent tasted
-Feature: see what hops i really like
-Feature: see what breweries i really like
+FEATURES
+    List beers with filter (style) and sorting (custom score, ratings, times had...etc) options
+    View score and rating compared to global and friends
+    Check is available at systembolaget right now
+    Swipe left/right for different lists
+        ?
+    Stats
+        Avg abv
+        Beers drunk total
+        Favorite hops/ibu
+        Favorite brewer
+        Favorite style
+    Search box for search beer
+    See popular beers that i havent drunk of same style available close to me (bars/systembolaget)
 
-MAIN VIEW
-    https://www.uplabs.com/posts/space-travel-ui
+UX
+    Click beer to show/hide details?
+    Price
+    Share beer
+    Availability (bar/systembolaget)
 
-    header with control options (big buttons that fold out options on touch/hold)
-        source (my beers, friend's beers that i havent drunk) <- slide this one left/right
-        style (folds out predefined styles: all, ipa, dipa, dstout, pstout)
-        sort (my/their rating, other's untappd rating, ratebeer rating, beeradv rating, friend's rating, times drunk by me, custom score)
-        search
-
-        random beer of same style from untapped that i havent drunk (available in sweden)
-        custom score = rating + times had
-
-    list of beers with infinite scroll
-        AT A GLANCE
-            name
-            (style)
-            my untappd rating
-            times drunk/custom score?
-            last drunk
-            badge for "favorite" not manual but based on stats
-            badges for friends who drank it (liked it?)
-
-        CLICK/ACTIVATE
-            slide in text section from side or fill window with info or expand card
-            button to "just drank it again, would drink again"
-            other's untappd rating
-            friend's untappd rating
-            ratebeer rating
-            beeradv rating
-            times drunk
-            custom score
-            where can i buy it now (systembolaget stock, predefined, closest)
-            price
-            recommend to friend
-
-        COOL
-            slide header left/right for different source mode
-            drag down on header to reveal more detailed filters?
-            header disappears scrolling down, appears scrolling up
-            slide either way for "just had it would drink again yes/no"
-            search by taking photo on beer can (barcode and/or name)
-            shake phone to give random beer from closest systembolag
+EFFECTS
+    Slide card to share?
+    Click card to reveal details (inline)
