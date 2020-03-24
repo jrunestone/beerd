@@ -5,6 +5,11 @@ a {
     display: block;
     width: 24px;
     height: 24px;
+    /* box-shadow: 5px 5px 8px -6px rgba(0,0,0,1); */
+}
+
+li + li a {
+    margin-top: 10px;
 }
 
 .material-design-icon {

@@ -1,13 +1,11 @@
 ul {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     margin: 0;
     padding: 0;
     list-style-type: none;
     position: fixed;
-    top: 25px;
-    left: 0;
-    right: 0;
-    padding: 0 30px;
+    top: 20px;
+    left: 15px;
     z-index: 10;
 }
