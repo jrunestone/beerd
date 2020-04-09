@@ -1,11 +1,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import ControlMenu from '@/components/ControlMenu/ControlMenu.vue';
 
-@Component({
-    components: {
-        ControlMenu
-    }
-})
+@Component
 export default class Control extends Vue {
     active: boolean = false;
 

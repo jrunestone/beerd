@@ -22,3 +22,44 @@ small.icon .material-design-icon {
     width: 24px;
     height: 24px;
 }
+
+
+
+
+
+.control-menu {
+    position: absolute;
+    background: #fff;
+    width: 240px;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.control-menu ul {
+    margin: 0;
+    padding: 40px 0 25px 0;
+}
+
+.control-menu ul li {
+    list-style-type: none;
+}
+
+.control-menu a {
+    text-decoration: none;
+    color: #000;
+    display: block;
+    padding: 14px 30px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.control-menu .material-design-icon {
+    float: right;
+}
+
+.control-menu a:hover,
+.control-menu a:focus {
+    background: #afacd9;
+    color: #fff;
+}

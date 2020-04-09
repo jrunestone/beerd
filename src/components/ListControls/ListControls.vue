@@ -1,7 +1,30 @@
 <template>
     <ul class="list-controls">
-        <li><control><beer-icon class="large-icon" /></control></li>
-        <li><control><sort-icon class="large-icon" /></control></li>
+        <li>
+            <control>
+                <template #menu>
+                    <control-menu>
+                        <style-control-menu />
+                    </control-menu>
+                </template>
+
+                <template #icon>
+                    <beer-icon class="large-icon" />
+                </template>
+            </control>
+        </li>
+
+        <li>
+            <control>
+                <template #menu>
+
+                </template>
+
+                <template #icon>
+                    <sort-icon class="large-icon" />
+                </template>
+            </control>
+        </li>
     </ul>
 </template>
 

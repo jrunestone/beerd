@@ -60,6 +60,7 @@ FEATURES
         Favorite style
     Search box for search beer
     See popular beers that i havent drunk of same style available close to me (bars/systembolaget)
+    Show all badges somehow
 
 UX
     Click beer to show/hide details?

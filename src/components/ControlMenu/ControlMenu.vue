@@ -1,10 +1,6 @@
 <template>
     <div class="control-menu">
-        <ul>
-            <li><a href="">My rating</a></li>
-            <li><a href="">Global rating</a></li>
-            <li><a href="">Price</a></li>
-        </ul>
+        <slot></slot>
     </div>
 </template>
 
