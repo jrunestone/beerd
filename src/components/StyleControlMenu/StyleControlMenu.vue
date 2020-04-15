@@ -1,6 +1,9 @@
 <template>
     <ul>
-        <li><a href="">asd</a></li>
+        <li><a href=""><global-icon />IPA</a></li>
+        <li><a href=""><global-icon />IPA</a></li>
+        <li><a href=""><global-icon />IPA</a></li>
+        <li><a href=""><global-icon />IPA</a></li>
     </ul>
 </template>
 

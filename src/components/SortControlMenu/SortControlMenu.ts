@@ -6,6 +6,6 @@ import GlobalIcon from 'vue-material-design-icons/Earth.vue';
         GlobalIcon
     }
 })
-export default class StyleControlMenu extends Vue {
+export default class SortControlMenu extends Vue {
 
 };

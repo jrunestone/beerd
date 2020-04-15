@@ -17,7 +17,9 @@
         <li>
             <control>
                 <template #menu>
-
+                    <control-menu>
+                        <sort-control-menu />
+                    </control-menu>
                 </template>
 
                 <template #icon>

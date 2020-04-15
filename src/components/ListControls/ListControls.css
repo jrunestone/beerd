@@ -1,4 +1,4 @@
-ul {
+ul.list-controls {
     display: flex;
     flex-direction: column;
     margin: 0;
