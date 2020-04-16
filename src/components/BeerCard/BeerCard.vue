@@ -6,7 +6,7 @@
             <div class="card-left-col">
                 <div class="card-content-main">
                     <h2 class="line-clamp">{{ beer.name }}</h2>
-                    <small>{{ beer.styleObj.abbrName.toUpperCase() }}</small>
+                    <small>{{ beer.styleObj.abbrName }}</small>
                 </div>
 
                 <div class="ratings">
