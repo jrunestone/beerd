@@ -9,7 +9,7 @@ import BeerCard from '@/components/BeerCard/BeerCard.vue';
 })
 export default class BeerList extends Vue {
     get beers(): Beer[] {
-        return this.$store.state.beers;
+        return this.$store.getters.beers;
     }
 
     created() {

@@ -1,6 +1,7 @@
 import { Beer as BeerBase, Brewer, Ratings } from '@/database/types';
 import faunadb from 'faunadb';
 import FaunaDate = faunadb.values.FaunaDate;
+import { BeerStyle } from './BeerStyle';
 
 export class Beer implements BeerBase {
     id!: number;
@@ -9,17 +10,17 @@ export class Beer implements BeerBase {
     abv: number = 0;
     brewer!: Brewer;
     ratings!: Ratings;
-    retailPrice: number | undefined;
+    retailPrice: number|undefined;
     score!: number;
     timesHad: number = 0;
-    imageUrl: string | undefined;
+    imageUrl: string|undefined;
     firstHad!: FaunaDate;
     lastHad!: FaunaDate;
     created!: FaunaDate;
     updated!: FaunaDate;
 
-    get styleAbbr(): string {
-        return this.style.replace(/^([^-]+).+/, '$1');
+    get styleObj(): BeerStyle {
+        return new BeerStyle(this.style);
     }
 
     get averageGlobalRating(): number {

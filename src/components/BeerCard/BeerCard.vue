@@ -6,7 +6,7 @@
             <div class="card-left-col">
                 <div class="card-content-main">
                     <h2 class="line-clamp">{{ beer.name }}</h2>
-                    <small>{{ beer.styleAbbr }}</small>
+                    <small>{{ beer.style }}</small>
                 </div>
 
                 <div class="ratings">
