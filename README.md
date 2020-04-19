@@ -43,8 +43,14 @@ PURPOSE
     Purpose to find old beers to drink again based on mood and rating
 
 TODO
-    Extract components out of icon+text and friends
-    CSS cleanup
+    Extract components out of friends
+    Add loader spinner
+    Add filter icons
+    Make filters/sort fold in from left when swiping/hovering instead of btns
+    Make correct style abbreviations
+    Implement sorter
+    Reset filter/sort
+    Different style for filter/sort btn when active
 
 FEATURES
     List beers with filter (style) and sorting (custom score, ratings, times had...etc) options
