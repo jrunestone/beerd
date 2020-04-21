@@ -20,10 +20,12 @@ export default new Vuex.Store({
         beers(state): Beer[] {
             let beers = state.allBeers;
 
+            // filter
             if (state.currentStyleFilter !== null) {
                 beers = beers.filter(beer => beer.styleObj.name === state.currentStyleFilter?.name);
             }
 
+            // sort
             if (state.currentSortMode !== null) {
                 beers = beers.sort((a: Beer, b: Beer) => {
                     const valA = state.currentSortMode?.sortProp(a);

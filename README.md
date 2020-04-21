@@ -48,9 +48,12 @@ TODO
     Add filter icons
     Make filters/sort fold in from left when swiping/hovering instead of btns
     Make correct style abbreviations
-    Implement sorter
     Reset filter/sort
     Different style for filter/sort btn when active
+    Show last time had, abv, retailprice..
+    Include retail price in score calculation
+    Check service worker working
+    Implement Identity auth
 
 FEATURES
     List beers with filter (style) and sorting (custom score, ratings, times had...etc) options
