@@ -5,6 +5,7 @@ import { State } from './types';
 import { Beer as BeerBase } from '@/database/types';
 import { Beer } from '@/models/Beer';
 import { BeerStyle } from '@/models/BeerStyle';
+import { BeerSortMode } from '@/models/BeerSortMode';
 
 Vue.use(Vuex);
 
@@ -23,10 +24,23 @@ export default new Vuex.Store({
                 beers = beers.filter(beer => beer.styleObj.name === state.currentStyleFilter?.name);
             }
 
+            if (state.currentSortMode !== null) {
+                beers = beers.sort((a: Beer, b: Beer) => {
+                    const valA = state.currentSortMode?.sortProp(a);
+                    const valB = state.currentSortMode?.sortProp(b);
+
+                    if (valA == valB) {
+                        return 0;
+                    }
+
+                    return (valA > valB ? -1 : 1);
+                });
+            }
+
             return beers;
         },
 
-        styles(state) {
+        styles(state): BeerStyle[] {
             let uniqueStyles: BeerStyle[] = [];
             const styles = state.allBeers.map(beer => beer.styleObj);
 
@@ -37,6 +51,14 @@ export default new Vuex.Store({
             });
 
             return uniqueStyles;
+        },
+
+        sortModes(state): BeerSortMode[] {
+            return [
+                new BeerSortMode('My Score', beer => beer.score),
+                new BeerSortMode('My Rating', beer => beer.ratings.myRating),
+                new BeerSortMode('Global Rating', beer => beer.averageGlobalRating)
+            ];
         }
     },
 
@@ -47,6 +69,10 @@ export default new Vuex.Store({
 
         setStyleFilter(state, style: BeerStyle) {
             state.currentStyleFilter = style;
+        },
+
+        setSortMode(state, sortMode: BeerSortMode) {
+            state.currentSortMode = sortMode;
         }
     },
 
@@ -59,6 +85,10 @@ export default new Vuex.Store({
 
         async setStyleFilter(context, style: BeerStyle) {
             context.commit('setStyleFilter', style);
+        },
+
+        async setSortMode(context, sortMode: string) {
+            context.commit('setSortMode', sortMode);
         }
     },
 

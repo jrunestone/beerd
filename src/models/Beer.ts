@@ -4,6 +4,8 @@ import FaunaDate = faunadb.values.FaunaDate;
 import { BeerStyle } from './BeerStyle';
 
 export class Beer implements BeerBase {
+    [index: string]: any;
+
     id!: number;
     name!: string;
     style!: string;
@@ -26,7 +28,7 @@ export class Beer implements BeerBase {
     get averageGlobalRating(): number {
         return Number((
             ((this.ratings.globalRating ?? 0) + (this.ratings.rateBeerRating ?? 0)) / 2)
-            .toFixed(2)
+                .toFixed(2)
         );
     }
 }

@@ -1,9 +1,6 @@
 <template>
     <ul>
-        <li><a href=""><global-icon />RATING</a></li>
-        <li><a href=""><global-icon />RATING</a></li>
-        <li><a href=""><global-icon />RATING</a></li>
-        <li><a href=""><global-icon />RATING</a></li>
+        <li v-for="(sortMode, index) in sortModes" :key="index"><a href="#" @mousedown="changeSortMode(sortMode)"><global-icon />{{ sortMode.name }}</a></li>
     </ul>
 </template>
 
