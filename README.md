@@ -15,12 +15,13 @@ DEVELOPING NOTES
     Run `netlify addons:auth fauna` to auth and create prod database and store secret keys
     Create a new database in faunadb for dev purposes and add a key
     Add a new environment variable in netlify called `FAUNADB_SERVER_SECRET_development` with the key to a dev database
+    Add a new environment variable in netlify called `UNTAPPD_CLIENT_ID`
+    Add a new environment variable in netlify called `UNTAPPD_CLIENT_SECRET`
     Go to faunadb and import the schema
     Run `fauna eval --secret=<your db secret key> --file=./bootstrap/bootstrap-db.fql` to create collection and indexes
     Run `npm run build:bootstrap` to build bootstrap scripts
     Run `npm run bootstrap:db` to create dummy data in dev database (need to terminate manually)
     Run `netlify dev` to start vue dev server and netlify proxies for functions with watch etc
-    TODO: Zapier...untappd...ratebeer..manual beer sync...
 
     Run `npm run build` to build production files to `./dist`
 
@@ -34,9 +35,18 @@ DEVELOPING NOTES
     Feature branches deploy to branch environment in development mode
     Pull requests into master deploy to deploy-preview in production mode
 
+SYNC BEERS FROM UNTAPPD INTO FAUNA
+    In the live environment go to `/.netlify/functions/auth` to authorize the Untappd app and get an access token
+    Take the access token and put it in an environment variable called `UNTAPPD_ACCESS_TOKEN` to be able to run the sync script
+    Go to `/.netlify/functions/sync` to start a beer sync job
+    ?? This job is called [every night] by an external scheduling service (Zapier)
+
 ENV VARIABLES
     FAUNADB_SERVER_SECRET
     FAUNADB_SERVER_SECRET_development
+    UNTAPPD_CLIENT_ID
+    UNTAPPD_CLIENT_SECRET
+    UNTAPPD_ACCESS_TOKEN_development
 
 PURPOSE
     An app to review my checked in beers on untappd

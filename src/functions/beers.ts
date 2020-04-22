@@ -2,12 +2,28 @@ import 'bootstrap/bootstrap-env';
 import { Context, APIGatewayEvent } from 'aws-lambda';
 import faunadb from 'faunadb';
 import { QueryIndexResponse, BeerDocument } from '../database/types';
+import { jsonResponse } from './helpers';
 
 const q = faunadb.query;
 
 const client = new faunadb.Client({
     secret: process.env.FAUNADB_SERVER_SECRET
 });
+
+export async function handler(event: APIGatewayEvent, context: Context) {
+    try {
+        const itemQueries = await getItemQueries();
+        const beers = await getBeerItems(itemQueries);
+
+        return jsonResponse(200, beers);
+    } catch (err) {
+        console.error(err);
+
+        return jsonResponse(500, {
+            error: err.message
+        });
+    }
+}
 
 async function getItemQueries() {
     const indexRefResponse = <QueryIndexResponse>await client.query(
@@ -32,23 +48,4 @@ async function getBeerItems(itemQueries: faunadb.Expr[]) {
         .map(d => d.data);
 
     return beers;
-}
-
-export async function handler(event: APIGatewayEvent, context: Context) {
-    try {
-        const itemQueries = await getItemQueries();
-        const beers = await getBeerItems(itemQueries);
-
-        return {
-            statusCode: 200,
-            body: JSON.stringify(beers)
-        };
-    } catch (err) {
-        console.error(err);
-
-        return {
-            statusCode: 500,
-            body: JSON.stringify(err.message)
-        };
-    }
 }

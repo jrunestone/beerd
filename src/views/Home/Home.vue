@@ -6,4 +6,3 @@
 </template>
 
 <script src="./Home.ts"></script>
-<style src="./Home.css" scoped></style>

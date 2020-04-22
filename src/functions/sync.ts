@@ -1,6 +1,15 @@
 import { Context, APIGatewayEvent } from 'aws-lambda';
+import { jsonResponse } from './helpers';
+
+const apiToken: string = process.env.UNTAPPD_ACCESS_TOKEN;
 
 export async function handler(event: APIGatewayEvent, context: Context) {
+    if (!apiToken) {
+        return jsonResponse(500, {
+            error: 'Missing Untappd API access token'
+        });
+    }
+
     try {
         // fetch beers from untappd
         // insert or update to faunadb
@@ -10,16 +19,12 @@ export async function handler(event: APIGatewayEvent, context: Context) {
             'updated': 1
         };
 
-        return {
-            statusCode: 200,
-            body: JSON.stringify(result)
-        };
+        return jsonResponse(200, result);
     } catch (err) {
         console.error(err);
 
-        return {
-            statusCode: 500,
-            body: JSON.stringify(err.message)
-        };
+        return jsonResponse(500, {
+            error: err.message
+        });
     }
 }
