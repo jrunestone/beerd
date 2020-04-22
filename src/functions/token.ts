@@ -1,12 +1,16 @@
 import 'bootstrap/bootstrap-env';
 import { Context, APIGatewayEvent } from 'aws-lambda';
-import { jsonResponse } from './helpers';
+import { authenticateUser, jsonResponse, unauthorizedResponse } from './helpers';
 
 const clientId: string = process.env.UNTAPPD_CLIENT_ID;
 const clientSecret: string = process.env.UNTAPPD_CLIENT_SECRET;
 const redirectUrl: string = `${process.env.URL}/.netlify/functions/auth`;
 
 export async function handler(event: APIGatewayEvent, context: Context) {
+    if (!authenticateUser(context)) {
+        return unauthorizedResponse();
+    }
+
     const code = event.queryStringParameters.code;
 
     // step 1 authenticate
