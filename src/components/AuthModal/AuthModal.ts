@@ -3,16 +3,17 @@ import NetlifyIdentity from 'netlify-identity-widget';
 
 @Component
 export default class AuthModal extends Vue {
-    isAuthenticated: boolean = false;
+    isInvite: boolean = false;
 
     created() {
+        this.isInvite = location.hash.indexOf('invite_token') !== -1;
         NetlifyIdentity.init();
     }
 
     mounted() {
-        this.isAuthenticated = NetlifyIdentity.currentUser() !== null;
+        const isAuthenticated = NetlifyIdentity.currentUser() !== null;
 
-        if (!this.isAuthenticated && location.hash.indexOf('invite_token') === -1) {
+        if (!isAuthenticated && !this.isInvite) {
             NetlifyIdentity.open('login');
         }
     }

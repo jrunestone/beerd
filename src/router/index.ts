@@ -28,7 +28,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.name != 'Auth' && !AuthService.isAuthenticated()) {
-        next('/auth');
+        location.href = `/auth${to.hash}`;
     } else {
         next();
     }

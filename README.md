@@ -23,6 +23,7 @@ DEVELOPING NOTES
     Run `npm run build:bootstrap` to build bootstrap scripts
     Run `npm run bootstrap:db` to create dummy data in dev database (need to terminate manually)
     Run `netlify dev` to start vue dev server and netlify proxies for functions with watch etc
+    Create a netlify identity via invite to be able to authenticate
 
     Run `npm run build` to build production files to `./dist`
 
