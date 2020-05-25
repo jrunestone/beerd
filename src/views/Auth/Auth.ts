@@ -8,12 +8,29 @@ import AuthService from '@/services/AuthService';
     }
 })
 export default class Auth extends Vue {
+    token: string | null = null;
+
     isAuthenticated(): boolean {
         return AuthService.isAuthenticated();
     }
 
     async startAuthUntappd() {
-        let url = await (await fetch('/.netlify/functions/token', await AuthService.getAuthHeaders())).json();
-        console.log(url);
+        const response = await fetch('/.netlify/functions/token', await AuthService.getAuthHeaders());
+        const url = await response.json();
+        window.location = url.url;
+    }
+
+    async finishAuthUntappd(authCode: string) {
+        const response = await fetch(`/.netlify/functions/token?code=${authCode}`, await AuthService.getAuthHeaders());
+        const token = await response.json();
+        this.token = token.token;
+    }
+
+    async created() {
+        const authCode = this.$route.query.code;
+
+        if (authCode) {
+            await this.finishAuthUntappd(authCode.toString());
+        }
     }
 }

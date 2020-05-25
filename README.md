@@ -4,6 +4,7 @@ Create collection+indexes and then import schema and shit with bootstrap db for 
 
 
 DEVELOPING NOTES
+    Create Untappd app
     Create netlify site
     Enable branch deploys in netlify
     Enable Functions in netlify
@@ -15,8 +16,8 @@ DEVELOPING NOTES
     Run `netlify addons:auth fauna` to auth and create prod database and store secret keys
     Create a new database in faunadb for dev purposes and add a key
     Add a new environment variable in netlify called `FAUNADB_SERVER_SECRET_development` with the key to a dev database
-    Add a new environment variable in netlify called `UNTAPPD_CLIENT_ID`
-    Add a new environment variable in netlify called `UNTAPPD_CLIENT_SECRET`
+    Add a new environment variable in netlify called `UNTAPPD_CLIENT_ID` with the untappd api client id
+    Add a new environment variable in netlify called `UNTAPPD_CLIENT_SECRET` with the untappd api client secret
     Go to faunadb and import the schema
     Run `fauna eval --secret=<your db secret key> --file=./bootstrap/bootstrap-db.fql` to create collection and indexes
     Run `npm run build:bootstrap` to build bootstrap scripts
@@ -36,7 +37,7 @@ DEVELOPING NOTES
     Pull requests into master deploy to deploy-preview in production mode
 
 SYNC BEERS FROM UNTAPPD INTO FAUNA
-    In the live environment go to `/.netlify/functions/auth` to authorize the Untappd app and get an access token
+    In the live environment go to `/auth` to authorize the Untappd app and get an access token (or in dev, just make sure the redirect url in the api settings is pointing to localhost)
     Take the access token and put it in an environment variable called `UNTAPPD_ACCESS_TOKEN` to be able to run the sync script
     Go to `/.netlify/functions/sync` to start a beer sync job
     ?? This job is called [every night] by an external scheduling service (Zapier)
@@ -46,14 +47,15 @@ ENV VARIABLES
     FAUNADB_SERVER_SECRET_development
     UNTAPPD_CLIENT_ID
     UNTAPPD_CLIENT_SECRET
-    UNTAPPD_ACCESS_TOKEN_development
+    UNTAPPD_ACCESS_TOKEN
 
 PURPOSE
     An app to review my checked in beers on untappd
     Purpose to find old beers to drink again based on mood and rating
 
 TODO
-    Fix authing untappd token page on /auth
+    Make netlify widget unclosable
+    Imeplement sync function, make sure accessible externally via zapier or something
 
     Extract components out of friends
     Add loader spinner
