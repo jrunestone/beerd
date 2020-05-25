@@ -1,6 +1,6 @@
 import { Component, Vue } from 'vue-property-decorator';
-import ListControls from "@/components/ListControls/ListControls.vue";
-import BeerList from "@/components/BeerList/BeerList.vue";
+import ListControls from '@/components/ListControls/ListControls.vue';
+import BeerList from '@/components/BeerList/BeerList.vue';
 
 @Component({
     components: {

@@ -1,5 +1,5 @@
 import { Component, Vue } from 'vue-property-decorator';
-import { BeerStyle } from '@/models/BeerStyle';
+import BeerStyle from '@/models/BeerStyle';
 import GlobalIcon from 'vue-material-design-icons/Earth.vue';
 
 @Component({

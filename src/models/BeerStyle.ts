@@ -1,5 +1,5 @@
 
-export class BeerStyle {
+export default class BeerStyle {
     name!: string;
     abbrName!: string;
 

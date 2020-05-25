@@ -53,6 +53,8 @@ PURPOSE
     Purpose to find old beers to drink again based on mood and rating
 
 TODO
+    Fix authing untappd token page on /auth
+
     Extract components out of friends
     Add loader spinner
     Add filter icons
@@ -63,7 +65,6 @@ TODO
     Show last time had, abv, retailprice..
     Include retail price in score calculation
     Check service worker working
-    Implement Identity auth
 
 FEATURES
     List beers with filter (style) and sorting (custom score, ratings, times had...etc) options

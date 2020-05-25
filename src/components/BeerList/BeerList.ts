@@ -1,5 +1,5 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Beer } from '@/models/Beer';
+import Beer from '@/models/Beer';
 import BeerCard from '@/components/BeerCard/BeerCard.vue';
 
 @Component({

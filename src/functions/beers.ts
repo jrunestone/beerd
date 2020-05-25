@@ -2,7 +2,8 @@ import 'bootstrap/bootstrap-env';
 import { Context, APIGatewayEvent } from 'aws-lambda';
 import faunadb from 'faunadb';
 import { QueryIndexResponse, BeerDocument } from '../database/types';
-import { jsonResponse } from './helpers';
+import { jsonResponse, unauthorizedResponse } from './helpers';
+import AuthService from '../services/AuthService';
 
 const q = faunadb.query;
 
@@ -11,6 +12,10 @@ const client = new faunadb.Client({
 });
 
 export async function handler(event: APIGatewayEvent, context: Context) {
+    if (!AuthService.hasClientAuthHeaders(context)) {
+        return unauthorizedResponse();
+    }
+
     try {
         const itemQueries = await getItemQueries();
         const beers = await getBeerItems(itemQueries);

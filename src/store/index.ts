@@ -3,9 +3,10 @@ import Vuex from 'vuex';
 
 import { State } from './types';
 import { Beer as BeerBase } from '@/database/types';
-import { Beer } from '@/models/Beer';
-import { BeerStyle } from '@/models/BeerStyle';
-import { BeerSortMode } from '@/models/BeerSortMode';
+import Beer from '@/models/Beer';
+import BeerStyle from '@/models/BeerStyle';
+import BeerSortMode from '@/models/BeerSortMode';
+import AuthService from '@/services/AuthService';
 
 Vue.use(Vuex);
 
@@ -80,7 +81,7 @@ export default new Vuex.Store({
 
     actions: {
         async fetchBeers(context) {
-            const response = await fetch('/.netlify/functions/beers');
+            const response = await fetch('/.netlify/functions/beers', await AuthService.getAuthHeaders());
             const beers = await response.json();
             context.commit('setBeers', beers);
         },

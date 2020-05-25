@@ -3,7 +3,7 @@ import ScoreIcon from 'vue-material-design-icons/Medal.vue';
 import BeerIcon from 'vue-material-design-icons/GlassMug.vue';
 import UserIcon from 'vue-material-design-icons/AccountCircle.vue';
 import GlobalIcon from 'vue-material-design-icons/Earth.vue';
-import { Beer } from '@/models/Beer';
+import Beer from '@/models/Beer';
 
 @Component({
     components: {

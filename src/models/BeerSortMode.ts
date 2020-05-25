@@ -1,6 +1,6 @@
-import { Beer } from './Beer';
+import Beer from './Beer';
 
-export class BeerSortMode {
+export default class BeerSortMode {
     name!: string;
     sortProp!: (beer: Beer) => any;
 

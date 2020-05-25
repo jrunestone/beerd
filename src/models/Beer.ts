@@ -1,9 +1,9 @@
 import { Beer as BeerBase, Brewer, Ratings } from '@/database/types';
 import faunadb from 'faunadb';
 import FaunaDate = faunadb.values.FaunaDate;
-import { BeerStyle } from './BeerStyle';
+import BeerStyle from './BeerStyle';
 
-export class Beer implements BeerBase {
+export default class Beer implements BeerBase {
     [index: string]: any;
 
     id!: number;

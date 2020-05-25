@@ -1,9 +1,14 @@
 import { Context, APIGatewayEvent } from 'aws-lambda';
-import { jsonResponse } from './helpers';
+import { jsonResponse, unauthorizedResponse } from './helpers';
+import AuthService from '../services/AuthService';
 
 const apiToken: string = process.env.UNTAPPD_ACCESS_TOKEN;
 
 export async function handler(event: APIGatewayEvent, context: Context) {
+    if (!AuthService.hasClientAuthHeaders(context)) {
+        return unauthorizedResponse();
+    }
+
     if (!apiToken) {
         return jsonResponse(500, {
             error: 'Missing Untappd API access token'

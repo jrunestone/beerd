@@ -1,6 +1,6 @@
-import { Beer } from '@src/models/Beer';
-import { BeerStyle } from '@src/models/BeerStyle';
-import { BeerSortMode } from '@src/models/BeerSortMode';
+import Beer from '@src/models/Beer';
+import BeerStyle from '@src/models/BeerStyle';
+import BeerSortMode from '@src/models/BeerSortMode';
 
 export interface State {
     allBeers: Beer[];

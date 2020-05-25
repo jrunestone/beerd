@@ -1,9 +1,3 @@
-import { Context } from 'aws-lambda';
-
-export function authenticateUser(context: any) {
-    const claims: boolean = context.clientContext && context.clientContext.user;
-    return claims;
-}
 
 export function jsonResponse(statusCode: number, body: any) {
     return {

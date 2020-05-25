@@ -1,5 +1,5 @@
 import { Component, Vue } from 'vue-property-decorator';
-import { BeerSortMode } from '@/models/BeerSortMode';
+import BeerSortMode from '@/models/BeerSortMode';
 import GlobalIcon from 'vue-material-design-icons/Earth.vue';
 
 @Component({
