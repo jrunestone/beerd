@@ -1,0 +1,30 @@
+html, body {
+    height: 100%;
+    font-family: 'Montserrat';
+    background: #3e3963;
+}
+
+.app {
+    height: 100%;
+}
+
+.line-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+small.icon .material-design-icon {
+    margin-right: 2px;
+}
+
+.large-icon,
+.large-icon > .material-design-icon__svg {
+    width: 24px;
+    height: 24px;
+}
+
+
+
+
+

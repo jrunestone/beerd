@@ -1,0 +1,21 @@
+CreateCollection({ name: "beers" });
+
+CreateIndex({
+    name: "beers",
+    source: Collection("beers")
+});
+
+CreateIndex({
+    name: "beersSortedByScore",
+    source: Collection("beers"),
+    values: [
+        {
+            field: ["data", "score"],
+            reverse: true
+        },
+
+        {
+            field: ["ref"]
+        }
+    ]
+});

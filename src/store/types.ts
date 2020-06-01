@@ -1,5 +1,9 @@
-import { Beer } from '@src/database/types';
+import Beer from '@src/models/Beer';
+import BeerStyle from '@src/models/BeerStyle';
+import BeerSortMode from '@src/models/BeerSortMode';
 
 export interface State {
-    beers: Beer[];
+    allBeers: Beer[];
+    currentStyleFilter: BeerStyle|null;
+    currentSortMode: BeerSortMode|null;
 };

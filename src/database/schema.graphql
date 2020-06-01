@@ -6,6 +6,7 @@ type Beer @collection(name: "beers") {
     imageUrl: String
     brewer: Brewer!
     ratings: Ratings!
+    score: Float!
     retailPrice: Float
     timesHad: Int!
     firstHad: Date!
@@ -28,4 +29,5 @@ type Brewer @embedded {
 
 type Query {
     beers: [Beer!]!
+    beersSortedByScore: [Beer!]!
 }

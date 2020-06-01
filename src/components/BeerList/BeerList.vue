@@ -1,8 +1,6 @@
 <template>
-    <div>
-        <div v-for="beer in beers" :key="beer.id">
-            {{ beer.name }}
-        </div>
+    <div class="beer-list">
+        <beer-card v-for="beer in beers" :key="beer.id" :beer="beer" />
     </div>
 </template>
 

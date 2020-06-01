@@ -1,9 +1,6 @@
 <template>
-    <div>
-        <header>
-            <list-controls />
-        </header>
-
+    <div class="home">
+        <list-controls />
         <beer-list />
     </div>
 </template>

@@ -1,7 +1,33 @@
 <template>
-    <div>
+    <ul class="list-controls">
+        <li>
+            <control>
+                <template #menu>
+                    <control-menu>
+                        <style-control-menu />
+                    </control-menu>
+                </template>
 
-    </div>
+                <template #icon>
+                    <beer-icon class="large-icon" />
+                </template>
+            </control>
+        </li>
+
+        <li>
+            <control>
+                <template #menu>
+                    <control-menu>
+                        <sort-control-menu />
+                    </control-menu>
+                </template>
+
+                <template #icon>
+                    <sort-icon class="large-icon" />
+                </template>
+            </control>
+        </li>
+    </ul>
 </template>
 
 <script src="./ListControls.ts"></script>

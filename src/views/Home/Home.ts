@@ -1,11 +1,13 @@
-import ListControls from "@/components/ListControls/ListControls.vue";
-import BeerList from "@/components/BeerList/BeerList.vue";
+import { Component, Vue } from 'vue-property-decorator';
+import ListControls from '@/components/ListControls/ListControls.vue';
+import BeerList from '@/components/BeerList/BeerList.vue';
 
-export default {
-    name: "Home",
-
+@Component({
     components: {
         ListControls,
         BeerList
     }
-};
+})
+export default class Home extends Vue {
+
+}

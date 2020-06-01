@@ -1,0 +1,36 @@
+.control {
+    position: relative;
+}
+
+.control a {
+    background: #fff;
+    color: #000;
+    border-radius: 50%;
+    padding: 10px;
+    display: block;
+    width: 24px;
+    height: 24px;
+    /* box-shadow: 5px 5px 8px -6px rgba(0,0,0,1); */
+}
+
+li + li a {
+    margin-top: 10px;
+}
+
+.material-design-icon {
+    margin-top: -2px;
+}
+
+.control .control-menu {
+    display: none;
+}
+
+.control.active .control-menu {
+    display: block;
+}
+
+.control.active a,
+.control.active a .material-design-icon,
+.control.active ul {
+    z-index: 2;
+}

@@ -17,21 +17,22 @@ export interface Brewer {
 
 export interface Ratings {
     myRating: number;
-    globalRating: number;
-    friendsRating: number;
-    rateBeerRating: number;
+    globalRating: number | undefined;
+    friendsRating: number | undefined;
+    rateBeerRating: number | undefined;
 }
 
 export interface Beer {
     id: number;
     name: string;
     style: string;
-    abv: number;
+    abv: number | undefined;
     brewer: Brewer;
     ratings: Ratings;
-    retailPrice: number;
+    score: number;
+    retailPrice: number | undefined;
     timesHad: number;
-    imageUrl: string;
+    imageUrl: string | undefined;
     firstHad: FaunaDate;
     lastHad: FaunaDate;
     created: FaunaDate;
