@@ -1,4 +1,5 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
+// @ts-ignore
 import NetlifyIdentity from 'netlify-identity-widget';
 
 @Component

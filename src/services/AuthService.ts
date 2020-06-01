@@ -1,3 +1,4 @@
+// @ts-ignore
 import NetlifyIdentity from 'netlify-identity-widget';
 
 export default class AuthService {
