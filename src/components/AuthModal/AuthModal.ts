@@ -7,6 +7,7 @@ export default class AuthModal extends Vue {
 
     created() {
         this.isInvite = location.hash.indexOf('invite_token') !== -1;
+        NetlifyIdentity.on('login', this.onLogin);
         NetlifyIdentity.init();
     }
 
@@ -16,5 +17,9 @@ export default class AuthModal extends Vue {
         if (!isAuthenticated && !this.isInvite) {
             NetlifyIdentity.open('login');
         }
+    }
+
+    onLogin() {
+        window.location.href = '/';
     }
 }
