@@ -3,11 +3,11 @@ import Ref = faunadb.values.Ref;
 import FaunaDate = faunadb.values.FaunaDate;
 
 export interface QueryIndexResponse {
-    data: Ref[];
+    data: [];
 }
 
 export interface BeerDocument {
-    data: Beer[];
+    data: Beer;
 }
 
 export interface Brewer {
