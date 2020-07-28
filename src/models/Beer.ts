@@ -6,6 +6,7 @@ import BeerStyle from './BeerStyle';
 export default class Beer implements BeerBase {
     [index: string]: any;
 
+    fref!: string;
     id!: number;
     name!: string;
     style!: string;

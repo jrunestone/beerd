@@ -7,6 +7,7 @@ export interface QueryIndexResponse {
 }
 
 export interface BeerDocument {
+    ref: Ref;
     data: Beer;
 }
 
@@ -23,6 +24,7 @@ export interface Ratings {
 }
 
 export interface Beer {
+    fref: string;
     id: number;
     name: string;
     style: string;

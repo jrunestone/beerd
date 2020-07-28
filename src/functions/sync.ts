@@ -8,6 +8,7 @@ import DbService from '../services/DbService';
 
 const apiClientId: string = process.env.UNTAPPD_CLIENT_ID;
 const apiToken: string = process.env.UNTAPPD_ACCESS_TOKEN;
+const dbService = new DbService();
 
 interface UntappdBeerResponse {
     count: number;
@@ -48,19 +49,28 @@ export async function handler(event: APIGatewayEvent, context: Context) {
         // todo: retail price, availability
         // get all beers from fauna and check against untappd what should be updated
 
-        const existingBeers = await fetchAllExistingBeers();
+        const existingBeers = await dbService.getBeers();
         const newBeers = await fetchAllUntappdBeers();
 
+        // return jsonResponse(200, [existingBeers]);
         let beersToSend = newBeers
             .map(mapBeer)
-            .map(beer => syncBeer(beer, existingBeers));
+            .map(beer => syncBeer(beer, existingBeers))
+            .filter(beer => beer !== null);
 
-        return jsonResponse(200, beersToSend);
+        if (!beersToSend.length) {
+            return jsonResponse(200, { message: 'Everything up to date' });
+        }
+
+        // send (upsert) beers to fauna
+        let response = await dbService.storeBeers(beersToSend);
+
+        return jsonResponse(200, response);
     } catch (err) {
         console.error(err);
 
         return jsonResponse(500, {
-            error: err.message
+            message: err.message
         });
     }
 }
@@ -71,11 +81,6 @@ async function fetchApiUrl(url: string) {
             'User-Agent': `beerd (${apiClientId})`
         }
     });
-}
-
-async function fetchAllExistingBeers(): Promise<Beer[]> {
-    const dbService = new DbService();
-    return await dbService.getBeers();
 }
 
 async function fetchAllUntappdBeers(): Promise<UntappdBeerResponse[]> {
@@ -98,16 +103,19 @@ function syncBeer(beer: Beer, existingBeers: Beer[]): Beer {
     const existingBeer = existingBeers.find(b => b.id === beer.id);
 
     if (!existingBeer) {
+        // console.log('create: ', beer.name, beer.id);
         return beer;
     }
 
     // check if existingBeer should be updated
     if (
         existingBeer.timesHad < beer.timesHad ||
-        existingBeer.ratings.friendsRating !== beer.ratings.friendsRating ||
-        existingBeer.ratings.rateBeerRating !== beer.ratings.rateBeerRating ||
+        (existingBeer.ratings.friendsRating || null) !== beer.ratings.friendsRating ||
+        (existingBeer.ratings.rateBeerRating || null) !== beer.ratings.rateBeerRating ||
         existingBeer.ratings.globalRating !== beer.ratings.globalRating
     ) {
+        // console.log('update: ', beer.name);
+        beer.fref = existingBeer.fref;
         beer.created = existingBeer.created;
         return beer;
     }
@@ -122,6 +130,7 @@ function mapBeer(beer: UntappdBeerResponse) : Beer {
     const now: Date = new Date();
 
     return {
+        fref: null,
         id: beer.beer.bid,
         name: beer.beer.beer_name,
         style: beer.beer.beer_style,
@@ -132,16 +141,16 @@ function mapBeer(beer: UntappdBeerResponse) : Beer {
         },
         ratings: {
             myRating: beer.rating_score,
-            friendsRating: null,
+            friendsRating: null, // TODO
             globalRating: beer.beer.rating_score,
-            rateBeerRating: null
+            rateBeerRating: null // TODO
         },
         score: 0,
-        retailPrice: null,
+        retailPrice: null, // TODO
         timesHad: beer.count,
         imageUrl: beer.beer.beer_label,
-        firstHad: new faunadb.values.FaunaDate(beer.first_had),
-        lastHad: new faunadb.values.FaunaDate(beer.recent_created_at),
+        firstHad: new faunadb.values.FaunaDate(new Date(beer.first_had)),
+        lastHad: new faunadb.values.FaunaDate(new Date(beer.recent_created_at)),
         created: new faunadb.values.FaunaDate(now),
         updated: new faunadb.values.FaunaDate(now)
     };

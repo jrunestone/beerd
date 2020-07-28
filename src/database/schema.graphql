@@ -1,5 +1,6 @@
 type Beer @collection(name: "beers") {
     id: Int! @unique
+    fref: String
     name: String!
     style: String!
     abv: Float!
