@@ -57,9 +57,9 @@ PURPOSE
 TODO
     Make netlify widget unclosable
     Imeplement sync function, make sure accessible externally via zapier or something
+    Add loader spinner for fetching beers, syncing on auth page
 
     Extract components out of friends
-    Add loader spinner
     Add filter icons
     Make filters/sort fold in from left when swiping/hovering instead of btns
     Make correct style abbreviations
@@ -80,7 +80,7 @@ FEATURES
         Beers drunk total
         Favorite hops/ibu
         Favorite brewer
-        Favorite style
+        Favorite style (graph)
     Search box for search beer
     See popular beers that i havent drunk of same style available close to me (bars/systembolaget)
     Show all badges somehow
