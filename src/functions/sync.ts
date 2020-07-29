@@ -46,7 +46,6 @@ export async function handler(event: APIGatewayEvent, context: Context) {
         // fetch beers from untappd
         // get total count, and fetch beers until all are fetched until !pagination.next_url
         // foreach beer update friend's rating and global rating and score
-        // todo: retail price, availability
         // get all beers from fauna and check against untappd what should be updated
 
         const existingBeers = await dbService.getBeers();
@@ -99,7 +98,7 @@ async function fetchAllUntappdBeers(): Promise<UntappdBeerResponse[]> {
     return beers;
 }
 
-function syncBeer(beer: Beer, existingBeers: Beer[]): Beer {
+function syncBeer(beer: Beer, existingBeers: Beer[], updateAll: boolean = false): Beer {
     const existingBeer = existingBeers.find(b => b.id === beer.id);
 
     if (!existingBeer) {
@@ -107,7 +106,7 @@ function syncBeer(beer: Beer, existingBeers: Beer[]): Beer {
     }
 
     // check if existingBeer should be updated
-    if (
+    if (updateAll ||
         existingBeer.timesHad < beer.timesHad ||
         (existingBeer.ratings.friendsRating || null) !== (beer.ratings.friendsRating || null) ||
         (existingBeer.ratings.rateBeerRating || null) !== (beer.ratings.rateBeerRating || null) ||
@@ -127,7 +126,7 @@ function mapBeer(beer: UntappdBeerResponse) : Beer {
     // set global average score (untappd+ratebeer)
     const now: Date = new Date();
 
-    return {
+    let mappedBeer: Beer = {
         fref: null,
         id: beer.beer.bid,
         name: beer.beer.beer_name,
@@ -146,7 +145,7 @@ function mapBeer(beer: UntappdBeerResponse) : Beer {
             rateBeerRating: null // TODO
         },
 
-        score: 0,
+        score: null,
         retailPrice: null, // TODO
         timesHad: beer.count,
         imageUrl: beer.beer.beer_label,
@@ -155,4 +154,13 @@ function mapBeer(beer: UntappdBeerResponse) : Beer {
         created: new faunadb.values.FaunaDate(now),
         updated: new faunadb.values.FaunaDate(now)
     };
+
+    mappedBeer.score = calculateBeerScore(mappedBeer.ratings.myRating, mappedBeer.timesHad);
+
+    return mappedBeer;
+}
+
+function calculateBeerScore(rating: number, timesHad: number): number {
+    // TODO rating,timeshad,last had?
+    return rating;
 }
