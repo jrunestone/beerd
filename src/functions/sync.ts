@@ -103,18 +103,16 @@ function syncBeer(beer: Beer, existingBeers: Beer[]): Beer {
     const existingBeer = existingBeers.find(b => b.id === beer.id);
 
     if (!existingBeer) {
-        // console.log('create: ', beer.name, beer.id);
         return beer;
     }
 
     // check if existingBeer should be updated
     if (
         existingBeer.timesHad < beer.timesHad ||
-        (existingBeer.ratings.friendsRating || null) !== beer.ratings.friendsRating ||
-        (existingBeer.ratings.rateBeerRating || null) !== beer.ratings.rateBeerRating ||
+        (existingBeer.ratings.friendsRating || null) !== (beer.ratings.friendsRating || null) ||
+        (existingBeer.ratings.rateBeerRating || null) !== (beer.ratings.rateBeerRating || null) ||
         existingBeer.ratings.globalRating !== beer.ratings.globalRating
     ) {
-        // console.log('update: ', beer.name);
         beer.fref = existingBeer.fref;
         beer.created = existingBeer.created;
         return beer;
