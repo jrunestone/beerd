@@ -27,9 +27,13 @@ export default class Beer implements BeerBase {
     }
 
     get averageGlobalRating(): number {
-        return Number((
-            ((this.ratings.globalRating ?? 0) + (this.ratings.rateBeerRating ?? 0)) / 2)
-                .toFixed(2)
-        );
+        let ratings = this.ratings.globalRating ?? 0;
+
+        if (this.ratings.rateBeerRating) {
+            ratings += this.ratings.rateBeerRating;
+            ratings /= 2;
+        }
+
+        return Number(ratings.toFixed(2));
     }
 }

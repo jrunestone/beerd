@@ -135,16 +135,19 @@ function mapBeer(beer: UntappdBeerResponse) : Beer {
         name: beer.beer.beer_name,
         style: beer.beer.beer_style,
         abv: beer.beer.beer_abv,
+
         brewer: {
             id: beer.brewery.brewery_id,
             name: beer.brewery.brewery_name
         },
+
         ratings: {
             myRating: beer.rating_score,
             friendsRating: null, // TODO
             globalRating: beer.beer.rating_score,
             rateBeerRating: null // TODO
         },
+
         score: 0,
         retailPrice: null, // TODO
         timesHad: beer.count,
