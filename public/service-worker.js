@@ -1,6 +1,5 @@
-import { registerRoute } from 'workbox-routing';
-import { CacheFirst } from 'workbox-strategies';
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
 
-registerRoute('/.netlify/functions/beers', new CacheFirst({
+workbox.routing.registerRoute('/.netlify/functions/beers', workbox.strategies.cacheFirst({
     cacheName: 'api-cache'
 }));
