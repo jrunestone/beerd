@@ -56,6 +56,7 @@ async function insertData(num: number) {
             name: ['Aon', 'FRESH', 'Acme IPA', 'Radio the Mothership', 'Hitachino Nest Non Ale', 'Apocalyptic Thunder Juice', 'Chocolate Strawberry Pear Vanilla Cake'][Math.floor(Math.random() * 7)],
             style: ['IPA - American', 'Pale Ale - American', 'Stout - Imperial / Double', 'Farmhouse Ale - Saison'][Math.floor(Math.random() * 4)],
             abv: parseFloat((Math.random() * 15).toFixed(1)),
+            url: 'https://untappd.com',
             brewer: {
                 id: Math.floor(1 + Math.random() * 70000),
                 name: ['Stigbergets Bryggeri', 'Dugges Bryggeri', 'Omnipollo', 'Poppels Bryggeri'][Math.random() * 4]

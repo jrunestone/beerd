@@ -11,6 +11,7 @@ export default class Beer implements BeerBase {
     name!: string;
     style!: string;
     abv: number = 0;
+    url!: string;
     brewer!: Brewer;
     ratings!: Ratings;
     retailPrice: number|undefined;

@@ -5,7 +5,7 @@
         <div class="card-content">
             <div class="card-left-col">
                 <div class="card-content-main">
-                    <h2 class="line-clamp">{{ beer.name }}</h2>
+                    <h2 class="line-clamp"><a :href="beer.url">{{ beer.name }}</a></h2>
                     <small :title="beer.styleObj.name">{{ beer.styleObj.abbrName }}</small>
                 </div>
 

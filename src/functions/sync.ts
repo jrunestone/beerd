@@ -25,6 +25,7 @@ interface UntappdBeerResponse {
         beer_name: string;
         beer_style: string;
         rating_score: number;
+        beer_slug: string;
     };
 
     brewery: {
@@ -34,7 +35,6 @@ interface UntappdBeerResponse {
 }
 
 export async function handler(event: APIGatewayEvent, context: Context) {
-    console.log('asd');
     if (!AuthService.hasClientAuthHeaders(context) && !AuthService.hasServiceToken(event)) {
         return unauthorizedResponse();
     }
@@ -144,6 +144,7 @@ function mapBeer(beer: UntappdBeerResponse) : Beer {
         name: beer.beer.beer_name,
         style: beer.beer.beer_style,
         abv: beer.beer.beer_abv,
+        url: `https://untappd.com/b/${beer.beer.beer_slug}/${beer.beer.bid}`,
 
         brewer: {
             id: beer.brewery.brewery_id,

@@ -34,6 +34,11 @@ h2 {
     -webkit-line-clamp: 2;
 }
 
+h2 a {
+    color: #fff;
+    text-decoration: none;
+}
+
 .card-content {
     display: flex;
     justify-content: space-between;
