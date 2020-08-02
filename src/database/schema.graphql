@@ -4,6 +4,7 @@ type Beer @collection(name: "beers") {
     name: String!
     style: String!
     abv: Float!
+    url: String!
     imageUrl: String
     brewer: Brewer!
     ratings: Ratings!

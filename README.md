@@ -18,12 +18,14 @@ DEVELOPING NOTES
     Add a new environment variable in netlify called `FAUNADB_SERVER_SECRET_development` with the key to a dev database
     Add a new environment variable in netlify called `UNTAPPD_CLIENT_ID` with the untappd api client id
     Add a new environment variable in netlify called `UNTAPPD_CLIENT_SECRET` with the untappd api client secret
+    Add a new environment variable in netlify called `SERVICE_ACCESS_TOKEN` with a randomly generated password (for Automate.io integration)
     Go to faunadb and import the schema
     Run `fauna eval --secret=<your db secret key> --file=./bootstrap/bootstrap-db.fql` to create collection and indexes
     Run `npm run build:bootstrap` to build bootstrap scripts
     Run `npm run bootstrap:db` to create dummy data in dev database (need to terminate manually)
     Run `netlify dev` to start vue dev server and netlify proxies for functions with watch etc
     Create a netlify identity via invite to be able to authenticate
+    Go to Automate.io and create a bot that will call the `sync` url on a regular basis, with the header `access-token` value of the created `SERVICE_ACCESS_TOKEN`
 
     Run `npm run build` to build production files to `./dist`
 

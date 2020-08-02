@@ -29,6 +29,7 @@ export interface Beer {
     name: string;
     style: string;
     abv: number | undefined;
+    url: string;
     brewer: Brewer;
     ratings: Ratings;
     score: number;
