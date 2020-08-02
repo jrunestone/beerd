@@ -1,3 +1,4 @@
+import 'bootstrap/bootstrap-env';
 import fetch from 'node-fetch';
 import { Context, APIGatewayEvent } from 'aws-lambda';
 import { jsonResponse, unauthorizedResponse } from './helpers';
@@ -8,6 +9,7 @@ import DbService from '../services/DbService';
 
 const apiClientId: string = process.env.UNTAPPD_CLIENT_ID;
 const apiToken: string = process.env.UNTAPPD_ACCESS_TOKEN;
+const temptoken: string = process.env.SERVICE_ACCESS_TOKEN;
 const dbService = new DbService();
 
 interface UntappdBeerResponse {
@@ -32,7 +34,8 @@ interface UntappdBeerResponse {
 }
 
 export async function handler(event: APIGatewayEvent, context: Context) {
-    if (!AuthService.hasClientAuthHeaders(context)) {
+    console.log('asd');
+    if (!AuthService.hasClientAuthHeaders(context) && !AuthService.hasServiceToken(event)) {
         return unauthorizedResponse();
     }
 
