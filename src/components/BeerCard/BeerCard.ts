@@ -19,4 +19,8 @@ export default class BeerCard extends Vue {
 
     @Prop()
     beer!: Beer;
+
+    beerData(): string {
+        return JSON.stringify(this.beer);
+    }
 };

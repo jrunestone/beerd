@@ -1,12 +1,12 @@
 <template>
-    <div class="beer-card">
+    <div class="beer-card" :data-raw="beerData()">
         <img :src="beer.imageUrl" :alt="beer.name" />
 
         <div class="card-content">
             <div class="card-left-col">
                 <div class="card-content-main">
                     <h2 class="line-clamp">{{ beer.name }}</h2>
-                    <small>{{ beer.styleObj.abbrName }}</small>
+                    <small :title="beer.styleObj.name">{{ beer.styleObj.abbrName }}</small>
                 </div>
 
                 <div class="ratings">
