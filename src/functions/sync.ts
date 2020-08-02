@@ -52,6 +52,7 @@ export async function handler(event: APIGatewayEvent, context: Context) {
         const newBeers = await fetchAllUntappdBeers();
 
         // return jsonResponse(200, [existingBeers]);
+
         let beersToSend = newBeers
             .map(mapBeer)
             .map(beer => syncBeer(beer, existingBeers))
@@ -60,6 +61,8 @@ export async function handler(event: APIGatewayEvent, context: Context) {
         if (!beersToSend.length) {
             return jsonResponse(200, { message: 'Everything up to date' });
         }
+
+        postProcessBeers(beersToSend);
 
         // send (upsert) beers to fauna
         let response = await dbService.storeBeers(beersToSend);
@@ -106,18 +109,24 @@ function syncBeer(beer: Beer, existingBeers: Beer[], updateAll: boolean = false)
     }
 
     // check if existingBeer should be updated
-    if (updateAll ||
-        existingBeer.timesHad < beer.timesHad ||
-        (existingBeer.ratings.friendsRating || null) !== (beer.ratings.friendsRating || null) ||
-        (existingBeer.ratings.rateBeerRating || null) !== (beer.ratings.rateBeerRating || null) ||
-        existingBeer.ratings.globalRating !== beer.ratings.globalRating
-    ) {
-        beer.fref = existingBeer.fref;
-        beer.created = existingBeer.created;
-        return beer;
-    }
+    // if (updateAll ||
+    //     existingBeer.timesHad < beer.timesHad ||
+    //     (existingBeer.ratings.friendsRating || null) !== (beer.ratings.friendsRating || null) ||
+    //     (existingBeer.ratings.rateBeerRating || null) !== (beer.ratings.rateBeerRating || null) ||
+    //     existingBeer.ratings.globalRating !== beer.ratings.globalRating
+    // ) {
+    //     beer.fref = existingBeer.fref;
+    //     beer.created = existingBeer.created;
+    //     return beer;
+    // }
 
-    return null;
+    // return null;
+
+    // we always have to update the custom beer score every time a new beer is inserted or updated
+    beer.fref = existingBeer.fref;
+    beer.created = existingBeer.created;
+
+    return beer;
 }
 
 function mapBeer(beer: UntappdBeerResponse) : Beer {
@@ -155,12 +164,30 @@ function mapBeer(beer: UntappdBeerResponse) : Beer {
         updated: new faunadb.values.FaunaDate(now)
     };
 
-    mappedBeer.score = calculateBeerScore(mappedBeer.ratings.myRating, mappedBeer.timesHad);
-
     return mappedBeer;
 }
 
-function calculateBeerScore(rating: number, timesHad: number): number {
-    // TODO rating,timeshad,last had?
-    return rating;
+function postProcessBeers(beers: Beer[]) {
+    beers.forEach(beer => {
+        beer.score = calculateBaseBeerScore(beer.ratings.myRating, beer.timesHad, beer.lastHad);
+    });
+}
+
+function calculateBaseBeerScore(rating: number, timesHad: number, lastHad: faunadb.values.FaunaDate): number {
+    // rank on rating and timesHad and then boost for when had last, older the better (TODO: friend's ratings?)
+    // not normalized score
+    let now = new Date();
+    let dateDiff = now.getMonth() - lastHad.date.getMonth();
+    let monthsSinceLastHad = dateDiff + (12 * (now.getFullYear() - lastHad.date.getFullYear()));
+
+    return rating * timesHad * Math.min(1, monthsSinceLastHad);
+}
+
+function normalizeBeerScore(score: number, allBeers: Beer[]) {
+    // normalizes a score to within 0-5
+    let allScores = allBeers.map(beer => beer.score);
+    let minScore = Math.min(...allScores);
+    let maxScore = Math.max(...allScores);
+
+    return 5 * score / (maxScore - minScore);
 }

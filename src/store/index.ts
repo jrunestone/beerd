@@ -45,10 +45,12 @@ export default new Vuex.Store({
 
         styles(state): BeerStyle[] {
             let uniqueStyles: BeerStyle[] = [];
-            const styles = state.allBeers.map(beer => beer.styleObj);
+
+            const styles = state.allBeers.map(beer => beer.styleObj)
+                .sort((a, b) => a.sortOrder < b.sortOrder ? -1 : 1);
 
             styles.forEach(style => {
-                if (uniqueStyles.findIndex(obj => obj.name === style.name) === -1) {
+                if (uniqueStyles.findIndex(obj => obj.abbrName === style.abbrName) === -1) {
                     uniqueStyles.push(style);
                 }
             });
